@@ -1,0 +1,32 @@
+<ion-content color="primary" fullscreen class="ion-padding" scroll-y="false">
+  <ion-slides class="slide-full" pager="true">
+    <ion-slide *ngFor="let slide of slides">
+      <ion-card mode="ios">
+        <img [src]="slide.img" class="slide-image" alt="slide.img">
+
+        <ion-card-header>
+          <ion-card-title>{{slide.titulo}}</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{slide.desc}} 
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <!--para el usuario-->
+    <ion-slide>
+      <ion-card mode="ios">
+        <img src="assets/svg/user-6.svg" class="slide-image" alt="">
+
+        <ion-card-header>
+          <ion-card-title>¿Que tipo de usuario eres?</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-button color="success" (click)="login('cliente')">Cliente</ion-button>
+          <ion-button color="success" (click)="login('colaborador')">Colaborador</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

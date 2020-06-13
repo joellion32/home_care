@@ -1,0 +1,23 @@
+<app-header title="Elige tu profesion"></app-header>
+
+<ion-content>
+    <div class="container">
+        <ion-searchbar animated placeholder="Buscar Profesion" class="search" (ionChange)="search($event)"></ion-searchbar>
+        
+        <ion-list>
+            <ion-list>
+                <ion-item lines="none" *ngFor="let p of professions | search: search_text: 'name_profession'">
+                <ion-avatar>
+                    <img src="assets/svg/user-6.svg" />
+                </ion-avatar>
+                  <ion-label class="ion-margin">
+                      {{p.name_profession}}
+                      <p>{{p.description}}</p>
+                  </ion-label>
+
+                  <ion-checkbox color="secondary" slot="end"></ion-checkbox>
+                </ion-item>
+              </ion-list>
+         </ion-list>
+        </div>
+</ion-content>

@@ -24,3 +24,25 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.button {
+    height: 50px;
+}
+
+
+.input {
+    margin-top: 5px;   
+    border: 2px solid #ecececf8;
+    border-radius: 25px;
+  }
+  
+
+.container{
+    height: 100% !important;
+    margin-top: 20px;
+    padding: 10px;
+}
+
+.search{
+    color: black;
+}

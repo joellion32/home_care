@@ -1,0 +1,33 @@
+
+<app-header title="HomeCare Services"></app-header>
+
+<ion-content>
+  <div class="center">
+    <div heading-colum-lr>
+      <h1 big-heading>Iniciar sesión</h1>
+      <h2 small-heading (click)="ionViewDidLoad(true)">Registrate</h2>
+    </div>
+    <ion-label>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. {{user}} 
+    </ion-label>
+
+    <br>
+     <ion-item class="input"  trasparent>
+       <img icon-small src="assets/img/user.png">
+       <ion-input type="text" placeholder="Correo Electronico"></ion-input>
+     </ion-item>
+
+     <ion-item class="input" trasparent>
+      <img icon-small src="assets/img/lock.png">
+      <ion-input type="text" placeholder="Contraseña"></ion-input>
+    </ion-item>
+
+     <ion-label class="forget-password">Has olvidado tu contraseña</ion-label> 
+      <div linespace></div>
+
+      <ion-button (click)="ionViewDidLoad()" class="button" color="primary" expand="block" fill="solid" shape="round">
+        Iniciar
+      </ion-button>
+      <ion-label class="ion-text-center" (click)="ionViewDidLoad(true)">No tienes cuenta <span class="link-button">Registrate</span></ion-label>
+  </div>
+</ion-content>

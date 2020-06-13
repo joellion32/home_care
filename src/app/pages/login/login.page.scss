@@ -1,0 +1,77 @@
+
+// heading-colum
+[heading-colum-lr]{
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+// font styles
+[big-heading]{
+    font-family: "Heebo-Bold" !important;
+    font-size: 30px !important;
+    color: var(--theme-black);
+}
+
+[small-heading]{
+    font-family: "Heebo-Regular" !important;
+    margin-left: auto;
+    padding-right: 40px;
+    font-size: 15px;
+}
+
+ion-label {
+    color: #000;
+    opacity: .8;
+    font-size: 13px;
+    display: block;
+}
+
+ion-content{
+    --background: #fafafa;
+}
+
+[trasparent]{
+    --background: trasparent;
+}
+
+
+ion-input{
+    --color: #000;
+    --padding-bottom: 15px;
+    --padding-top: 15px;
+    --padding-start: 5px;
+    font-size: 15px;
+    text-indent: 1px;
+    padding-left: 10px !important;
+}
+
+[icon-small]{
+    width: 30px;
+}
+
+[linespace]{
+    height: 30px;
+}
+
+ion-item{
+    --highlight-heigth: 0;
+    --min-heigth: 65px;
+    --padding-start: 0;
+}
+
+ion-label {
+    color: #000;
+    opacity: .8;
+    font-size: 13px;
+    display: block;
+}
+
+
+.forget-password{
+    color: #000;
+    font-size: 13px;
+    display: block;
+    text-align: right;
+    padding: 10px;
+}

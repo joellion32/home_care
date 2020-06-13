@@ -4,12 +4,12 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #ffce00;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary-shade: #ffce00;
+  --ion-color-primary-tint: #ffce00;
 
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
@@ -83,12 +83,12 @@
    */
 
   body {
-    --ion-color-primary: #428cff;
+    --ion-color-primary: #ffce00;
     --ion-color-primary-rgb: 66,140,255;
     --ion-color-primary-contrast: #ffffff;
     --ion-color-primary-contrast-rgb: 255,255,255;
-    --ion-color-primary-shade: #3a7be0;
-    --ion-color-primary-tint: #5598ff;
+    --ion-color-primary-shade: #ffce00;
+    --ion-color-primary-tint: #ffce00;
 
     --ion-color-secondary: #50c8ff;
     --ion-color-secondary-rgb: 80,200,255;
@@ -145,6 +145,10 @@
     --ion-color-light-contrast-rgb: 255,255,255;
     --ion-color-light-shade: #1e2023;
     --ion-color-light-tint: #383a3e;
+
+    --theme-color: #ffce00;
+    --theme-black: #000000;
+    --ion-color-gray: #d7d8da;
   }
 
   /*
@@ -153,10 +157,10 @@
    */
 
   .ios body {
-    --ion-background-color: #000000;
+    --ion-background-color: #ffffff;
     --ion-background-color-rgb: 0,0,0;
 
-    --ion-text-color: #ffffff;
+    --ion-text-color: #000000;
     --ion-text-color-rgb: 255,255,255;
 
     --ion-color-step-50: #0d0d0d;
@@ -179,9 +183,9 @@
     --ion-color-step-900: #e6e6e6;
     --ion-color-step-950: #f2f2f2;
 
-    --ion-toolbar-background: #0d0d0d;
+    --ion-toolbar-background: #ffffff;
 
-    --ion-item-background: #000000;
+    --ion-item-background: #ffffff;
   }
 
 
@@ -191,13 +195,13 @@
    */
 
   .md body {
-    --ion-background-color: #121212;
+    --ion-background-color: #ffffff;
     --ion-background-color-rgb: 18,18,18;
 
-    --ion-text-color: #ffffff;
+    --ion-text-color: #222222;
     --ion-text-color-rgb: 255,255,255;
 
-    --ion-border-color: #222222;
+    --ion-border-color: #ffffff;
 
     --ion-color-step-50: #1e1e1e;
     --ion-color-step-100: #2a2a2a;
@@ -219,10 +223,100 @@
     --ion-color-step-900: #e7e7e7;
     --ion-color-step-950: #f3f3f3;
 
-    --ion-item-background: #1e1e1e;
+    --ion-item-background: #ffffff;
 
-    --ion-toolbar-background: #1f1f1f;
+    --ion-toolbar-background: #ffffff;
 
-    --ion-tab-bar-background: #1f1f1f;
+    --ion-tab-bar-background: #ffffff;
+  }
+
+  :root[mode=ios],
+  :root[mode=md]{
+    --ion-font-family: "Heebo-Regular" !important;
+    font-family: "Heebo-Regular", "Times New Roman", serif !important;
   }
 }
+
+
+
+/* Imports Fonts*/
+@font-face {
+  font-family: 'Heebo-Black';
+  src: url('../assets/fonts/Heebo-Black.ttf');
+}
+
+@font-face {
+  font-family: 'Heebo-Bold';
+  src: url('../assets/fonts/Heebo-Bold.ttf');
+}
+
+
+@font-face {
+  font-family: 'Heebo-ExtraBold';
+  src: url('../assets/fonts/Heebo-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: 'Heebo-Light';
+  src: url('../assets/fonts/Heebo-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Heebo-Medium';
+  src: url('../assets/fonts/Heebo-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Heebo-Regular';
+  src: url('../assets/fonts/Heebo-Regular.ttf');
+}
+
+@media(min-heigth: 319px){
+.center{
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  -webkit-transform: translate(-49%, -49%);
+  transform: translate(-49%, -49%);
+  width: 90%;
+}
+}
+
+
+
+@media(min-height: 319px){
+  .center{
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    -webkit-transform: translate(-49%, -49%);
+    transform: translate(-49%, -49%);
+    width: 90%;
+  }
+  }
+
+
+  @media(min-height: 735px){
+  .center{
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    -webkit-transform: translate(-49%, -49%);
+    transform: translate(-49%, -49%);
+    width: 90%;
+  }
+  }
+
+
+  @media(min-height: 812px){
+  .center{
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    -webkit-transform: translate(-49%, -49%);
+    transform: translate(-49%, -49%);
+    width: 90%;
+  }
+  }
+
+  

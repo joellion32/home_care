@@ -1,0 +1,18 @@
+<app-header title="Selecciona tu País"></app-header>
+
+<ion-content>
+<div class="container">
+<ion-searchbar animated placeholder="Buscar País" class="search" (ionChange)="search($event)"></ion-searchbar>
+
+<ion-list>
+    <ion-item lines="none" button *ngFor="let c of countries | search: search_text: 'name'" (click)="city()" detail>
+    <ion-avatar class="ion-margin">
+            <img [src]="c.flag" />
+    </ion-avatar>
+      <ion-label>{{c.name}}</ion-label>
+    </ion-item>
+ </ion-list>
+
+</div>
+
+</ion-content>

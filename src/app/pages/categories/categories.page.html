@@ -1,0 +1,14 @@
+<app-header title="Elige una Categoria"></app-header>
+
+<ion-content>
+<div class="container">
+  <ion-list>
+    <ion-item lines="none" button *ngFor="let category of categories" (click)="navigate(category._id)" detail>
+    <ion-avatar class="ion-margin">
+            <img class="icon" src="http://localhost:3000/icons/{{category.icon}}" />
+    </ion-avatar>
+      <ion-label>{{category.name_category}}</ion-label>
+    </ion-item>
+ </ion-list>
+</div>
+</ion-content>
