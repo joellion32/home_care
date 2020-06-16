@@ -2,28 +2,30 @@
 
 <ion-content>
 <div class="container">
+
+            <form [formGroup]="form" (ngSubmit)="sendData()">
+                <ion-list>
+                <ion-item lines="full">
+                    <ion-label position="floating">Ciudad</ion-label>
+                    <ion-input formControlName="city"></ion-input>
+                  </ion-item>
     
-           <ion-list>
-            <ion-item lines="full">
-                <ion-label position="floating">Ciudad</ion-label>
-                <ion-input></ion-input>
-              </ion-item>
-
-              <ion-item lines="full">
-                <ion-label position="floating">Direccion</ion-label>
-                <ion-input></ion-input>
-              </ion-item>
-
-
-              <ion-item lines="full">
-                <ion-label position="floating">ZIP CODE</ion-label>
-                <ion-input></ion-input>
-              </ion-item>
-        </ion-list>
-
-        <ion-button class="button" (click)="person_data()" expand="block" shape="round">
-            Confirmar
-        </ion-button>
+                  <ion-item lines="full">
+                    <ion-label position="floating">Direccion</ion-label>
+                    <ion-input formControlName="location"></ion-input>
+                  </ion-item>
+    
+    
+                  <ion-item lines="full">
+                    <ion-label position="floating">ZIP CODE</ion-label>
+                    <ion-input formControlName="zip_code"></ion-input>
+                  </ion-item>
+                  </ion-list>
+    
+                <ion-button type="submit" class="button" expand="block" shape="round" [disabled]="form.invalid">
+                  Confirmar
+                </ion-button>
+            </form>
 </div>  
     
 </ion-content>

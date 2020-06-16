@@ -39,6 +39,18 @@ const routes: Routes = [
     path: 'categories',
     loadChildren: () => import('./pages/categories/categories.module').then( m => m.CategoriesPageModule)
   },
+  {
+    path: 'photo',
+    loadChildren: () => import('./pages/register/photo/photo.module').then( m => m.PhotoPageModule)
+  },
+  {
+    path: 'description',
+    loadChildren: () => import('./pages/register/description/description.module').then( m => m.DescriptionPageModule)
+  },
+  {
+    path: 'suscription',
+    loadChildren: () => import('./pages/register/suscription/suscription.module').then( m => m.SuscriptionPageModule)
+  },
 ];
 
 @NgModule({

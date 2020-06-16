@@ -18,6 +18,8 @@
     margin-left: auto;
     padding-right: 40px;
     font-size: 15px;
+    font-weight: bold;
+    color: #ffce00;
 }
 
 ion-label {
@@ -67,6 +69,10 @@ ion-label {
     display: block;
 }
 
+.link-button{
+    color: #ffce00;
+    font-weight: bold;
+}
 
 .forget-password{
     color: #000;

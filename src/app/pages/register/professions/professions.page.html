@@ -6,18 +6,34 @@
         
         <ion-list>
             <ion-list>
-                <ion-item lines="none" *ngFor="let p of professions | search: search_text: 'name_profession'">
+                <ion-item lines="none" *ngFor="let p of professions | search: search_text: 'name_profession'" >
                 <ion-avatar>
                     <img src="assets/svg/user-6.svg" />
                 </ion-avatar>
                   <ion-label class="ion-margin">
                       {{p.name_profession}}
-                      <p>{{p.description}}</p>
+                      <p style="color: gray;">{{p.description}}</p>
                   </ion-label>
 
-                  <ion-checkbox color="secondary" slot="end"></ion-checkbox>
+                  <ion-checkbox [(ngModel)]="p.checkbox" color="primary" slot="end" (ionChange)="selectProfessions(p.checkbox, p.name_profession)"></ion-checkbox>
                 </ion-item>
               </ion-list>
          </ion-list>
+
+         <app-skeleton *ngIf="loading == true"></app-skeleton>
         </div>
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar color="primary">
+        <ion-chip  class="animate__animated animate__pulse" *ngFor="let item of items" color="secondary">
+            <ion-label>{{item}}</ion-label>
+            <ion-icon name="close-circle"></ion-icon>
+        </ion-chip>
+        
+        <ion-button (click)="sendData()"  expand="block" fill="clear" shape="round">
+            CONTINUAR
+            <ion-icon class="icon"  slot="end" name="arrow-forward-outline"></ion-icon> 
+        </ion-button>   
+    </ion-toolbar>
+</ion-footer>

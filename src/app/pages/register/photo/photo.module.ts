@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CityPageRoutingModule } from './city-routing.module';
+import { PhotoPageRoutingModule } from './photo-routing.module';
 
-import { CityPage } from './city.page';
+import { PhotoPage } from './photo.page';
 import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
@@ -15,10 +15,8 @@ import { ComponentsModule } from 'src/app/components/components.module';
     FormsModule,
     IonicModule,
     ComponentsModule,
-    CityPageRoutingModule,
-    FormsModule, 
-    ReactiveFormsModule
+    PhotoPageRoutingModule
   ],
-  declarations: [CityPage]
+  declarations: [PhotoPage]
 })
-export class CityPageModule {}
+export class PhotoPageModule {}

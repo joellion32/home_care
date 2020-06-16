@@ -4,32 +4,34 @@
 <ion-content>
   <div class="container">
     
-    <ion-list>
-     <ion-item class="input" lines="full">
-         <ion-label position="floating">Nombre y Apellido</ion-label>
-         <ion-input></ion-input>
-       </ion-item>
-
-       <ion-item class="input" lines="full">
-         <ion-label position="floating">Correo Electronico</ion-label>
-         <ion-input></ion-input>
-       </ion-item>
-
-
-       <ion-item class="input" lines="full">
-         <ion-label position="floating">Contraseña</ion-label>
-         <ion-input type="password"></ion-input>
-       </ion-item>
-
-       <ion-item class="input" lines="full">
-        <ion-label position="floating">Repite Contraseña</ion-label>
-        <ion-input type="password"></ion-input>
-      </ion-item>
- </ion-list>
-
- <ion-button class="button" (click)="navigate()" expand="block" shape="round">
-     Confirmar
- </ion-button>
+    <form [formGroup]="form" (ngSubmit)="navigate()">
+      <ion-list>
+        <ion-item class="input" lines="full">
+            <ion-label position="floating">Nombre y Apellido</ion-label>
+            <ion-input formControlName="name"></ion-input>
+          </ion-item>
+   
+          <ion-item class="input" lines="full">
+            <ion-label position="floating">Correo Electronico</ion-label>
+            <ion-input formControlName="email"></ion-input>
+          </ion-item>
+   
+   
+          <ion-item class="input" lines="full">
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input formControlName="password1" type="password"></ion-input>
+          </ion-item>
+   
+          <ion-item class="input" lines="full">
+           <ion-label position="floating">Repite Contraseña</ion-label>
+           <ion-input formControlName="password2" type="password"></ion-input>
+         </ion-item>
+    </ion-list>
+  
+  <ion-button class="button"  type="submit" [disabled]="form.invalid" expand="block" shape="round">
+  Confirmar
+  </ion-button>
+</form>
 </div>  
 
 </ion-content>

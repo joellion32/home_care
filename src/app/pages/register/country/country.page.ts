@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { CountryService } from 'src/app/services/country.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-country',
@@ -10,8 +11,8 @@ import { CountryService } from 'src/app/services/country.service';
 export class CountryPage implements OnInit {
   search_text: string = '';
   countries: any[] = [];
-
-  constructor(private nav: NavController, private countryService: CountryService) { }
+  loading: boolean = true;
+  constructor(private nav: NavController, private countryService: CountryService, private storageService: StorageService) { }
 
   ngOnInit() {
    this.loadData();
@@ -22,14 +23,17 @@ export class CountryPage implements OnInit {
     this.search_text = event.detail.value;
   }
 
-  // navegar a la ciudad
-  city(){
+  // navegar a la pagina de localizacion y guardar los datos
+  country(country: string){
+    this.storageService.saveData('', '', '', country, '', '', 0);
     this.nav.navigateForward('city');
   }
 
+  // cargar la data
   async loadData(){
-    await this.countryService.getCountry().subscribe(resp => {
+    this.countryService.getCountry().subscribe(resp => {
       this.countries = resp;
+      this.loading = false;
       console.log(this.countries);
     })
   }

@@ -5,15 +5,13 @@ import { environment } from 'src/environments/environment.prod';
 @Injectable({
   providedIn: 'root'
 })
-export class ProfessionsService {
+export class SuscriptionsService {
   url: string = environment.url;
-
   constructor(private http: HttpClient) { }
 
-  // get professions for category
-  getProfessions(id: string){
-    console.log(id);
-    return this.http.get(`${this.url}professions/view/${id}`);
-  }
 
+  // obtener las suscripciones
+  getSuscriptions(){
+    return this.http.get(`${this.url}suscriptions/all`);
+  }
 }

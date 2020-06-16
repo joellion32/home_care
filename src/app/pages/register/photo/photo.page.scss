@@ -1,0 +1,82 @@
+ion-card .coworker-card .header-img {
+    height: 50% !important;
+}
+
+ion-card {
+    margin-top: 20px !important;
+
+     /* heigth */
+     @media only screen and (height: 736px){
+        margin-top: 50px !important;
+    }
+
+    @media only screen and (height: 731px){
+        margin-top: 50px !important;
+    }
+
+    @media only screen and (height: 823px){
+        margin-top: 60px !important;
+    }
+
+     @media only screen and (height: 812px){
+        margin-top: 80px !important;
+    }
+
+     @media only screen and (height: 1024px){
+        margin-top: 150px !important;
+    }
+
+     @media only screen and (height: 1366px){
+        margin-top: 250px !important;
+    }
+}
+
+.text {
+    color: black;
+    text-align: center;
+}
+
+.icons{
+    margin: 5px;
+    font-size: 40px !important;
+    text-align: center;
+    color: white;
+}
+
+ion-row{
+    margin: auto !important;
+}
+
+img{
+    height: 230px !important;
+    width: 200px;
+    border-radius: 20px;
+    margin-top: 5px;
+    @media only screen and (width: 360px){
+        margin-left: 70px !important;
+    }
+
+    @media only screen and (width: 411px){
+        margin-left: 98px !important;
+    }
+
+    @media only screen and (width: 320px){
+        margin-left: 50px !important;
+    }
+
+    @media only screen and (width: 375px){
+        margin-left: 78px !important;
+    }
+
+    @media only screen and (width: 414px){
+        margin-left: 96px !important;
+    }
+
+    @media only screen and (width: 768px){
+        margin-left: 275px !important;
+    }
+
+    @media only screen and (width: 1024px){
+        margin-left: 400px !important;
+    } 
+}

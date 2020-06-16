@@ -9,6 +9,7 @@ import { NavController } from '@ionic/angular';
 })
 export class CategoriesPage implements OnInit {
   categories: any[] = [];
+  loading: boolean = true;
 
   constructor(private categoriesService: CategoriesService, private nav: NavController) { }
 
@@ -20,6 +21,7 @@ export class CategoriesPage implements OnInit {
   LoadCategories(){
     this.categoriesService.getCategories().subscribe(resp => {
       this.categories = resp['categories'];
+      this.loading = false;
       console.log(this.categories);
     });
   }

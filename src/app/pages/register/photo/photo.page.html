@@ -1,0 +1,37 @@
+<app-header title="Foto de Perfil"></app-header>
+
+<ion-content class="container">
+    <ion-card class="coworker-card">
+        <img *ngIf="!photo" style="width: 200px !important; height: 200px !important;" src="/assets/img/profile.png" class="header-img animate__animated animate__fadeIn"/>
+        <img *ngIf="photo" [src]="photo" class="header-img animate__animated animate__fadeIn"/>
+        
+        <ion-card-content>
+          <ion-list lines="none">
+
+            <ion-item>
+                <ion-row>
+                    <ion-col size="6">
+                        <ion-button (click)="takePicture()">
+                            <ion-icon class="icons" name="camera-outline"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+
+                    <ion-col size="6">
+                        <ion-button (click)="loadGallery()">
+                            <ion-icon class="icons" name="image-outline"></ion-icon>
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-item>
+
+            <ion-item>
+              <ion-label class="ion-text-wrap text">
+                <p class="text">Tomate una foto decente ya que los clientes verán esta foto en tu perfil.</p> 
+              </ion-label>
+            </ion-item>
+          </ion-list>
+
+          <app-button (click)="sendData()"></app-button>
+        </ion-card-content>
+      </ion-card>
+</ion-content>

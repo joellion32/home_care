@@ -1,0 +1,20 @@
+<app-header title="Descríbenos lo que hacés"></app-header>
+
+
+
+<ion-content>
+<div class="container">
+  <ion-label class="ion-text-wrap">
+    <p class="text">Danos una breve descripción de cómo trabajas y qué tipo de servicios ofreces. </p>
+  </ion-label>  
+
+  <ion-card>
+    <ion-item>
+      <ion-label class="label" position="floating">Descripción</ion-label>
+      <ion-textarea cols="6" rows="6" class="text-area"></ion-textarea>
+    </ion-item>
+  </ion-card>
+
+  <app-button (click)="sendData()"></app-button>
+</div>
+</ion-content>

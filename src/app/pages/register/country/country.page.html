@@ -4,8 +4,8 @@
 <div class="container">
 <ion-searchbar animated placeholder="Buscar País" class="search" (ionChange)="search($event)"></ion-searchbar>
 
-<ion-list>
-    <ion-item lines="none" button *ngFor="let c of countries | search: search_text: 'name'" (click)="city()" detail>
+<ion-list *ngIf="loading == false">
+    <ion-item lines="none" button *ngFor="let c of countries | search: search_text: 'name'" (click)="country(c.name)" detail>
     <ion-avatar class="ion-margin">
             <img [src]="c.flag" />
     </ion-avatar>
@@ -13,6 +13,8 @@
     </ion-item>
  </ion-list>
 
+
+ <app-skeleton *ngIf="loading == true"></app-skeleton>
 </div>
 
 </ion-content>

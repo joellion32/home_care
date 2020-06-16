@@ -1,0 +1,78 @@
+.text{
+    text-align: center !important;
+    font-size: 15px !important;
+    color: black;
+}
+
+.label{
+    margin: 0 !important;
+    padding: 0 !important;
+    position: fixed !important;
+}
+
+
+.text-area{
+    height: 100% !important;
+    width: 100% !important;
+
+    @media only screen and (height: 568px){
+        margin-top: 99px !important;
+    }
+
+    @media only screen and (height: 640px){
+        margin-top: 149px !important;
+    }
+
+    @media only screen and (height: 667px){
+        margin-top: 149px !important;
+    }
+
+
+    @media only screen and (height: 736px){
+        margin-top: 194px !important;
+    }
+
+     @media only screen and (height: 812px){
+        margin-top: 194px !important;
+    }
+
+     @media only screen and (height: 1024px){
+        margin-top: 265px !important;
+        font-size: 20px;
+    }
+
+     @media only screen and (height: 1366px){
+        font-size: 20px;
+        margin-top: 410px !important;
+    }
+}
+
+
+ion-card {
+    margin-top: 20px !important;
+    height: 50% !important;
+     /* heigth */
+     @media only screen and (height: 736px){
+        margin-top: 50px !important;
+    }
+
+    @media only screen and (height: 731px){
+        margin-top: 50px !important;
+    }
+
+    @media only screen and (height: 823px){
+        margin-top: 60px !important;
+    }
+
+     @media only screen and (height: 812px){
+        margin-top: 80px !important;
+    }
+
+     @media only screen and (height: 1024px){
+        margin-top: 150px !important;
+    }
+
+     @media only screen and (height: 1366px){
+        margin-top: 250px !important;
+    }
+}

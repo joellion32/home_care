@@ -16,6 +16,7 @@ export class SearchPipe implements PipeTransform {
 
    // hacer la busqueda
     return array.filter(item => {
+    console.log(item);
     return item[column].toLowerCase().includes(text);
    });
 
