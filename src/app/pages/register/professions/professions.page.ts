@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProfessionsService } from 'src/app/services/professions.service';
 import { AlertController, NavController } from '@ionic/angular';
+import { RegisterService } from 'src/app/services/register.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { Plugins } from '@capacitor/core';
 
+const { Storage } = Plugins;
 
 @Component({
   selector: 'app-professions',
@@ -17,8 +20,8 @@ export class ProfessionsPage implements OnInit {
   items: any[] = [];
   loading: boolean = true;
 
-  constructor(private route: ActivatedRoute, private professionService: ProfessionsService, 
-  private alertController: AlertController, private nav: NavController) { }
+  constructor(private route: ActivatedRoute, private registerService: RegisterService, 
+  private alertController: AlertController, private nav: NavController, private storageService: StorageService) { }
 
 
   ngOnInit() {
@@ -28,7 +31,7 @@ export class ProfessionsPage implements OnInit {
 
   // obtener las profesiones
   getProfessions(){
-    this.professionService.getProfessions(this.id).subscribe(resp => {
+    this.registerService.getProfessions(this.id).subscribe(resp => {
       if(resp['profession'].length == 0){
         this.errorAlert();
       }
@@ -59,7 +62,7 @@ export class ProfessionsPage implements OnInit {
   }
 
 
-  // eliminar professiones
+  // eliminar tag profesiones
   removeProfessions ( arr, item ) {
     let i = arr.indexOf( item );
     if ( i !== -1 ) {
@@ -68,9 +71,14 @@ export class ProfessionsPage implements OnInit {
 }
 
 // enviar la data y guardarla en el storage y redireccionar a la otra pagina
-sendData(){
-  console.log(this.items);
-  this.nav.navigateForward('photo');
+async sendData(){
+  const data = await Storage.get({ key: 'client' });
+  const user = JSON.parse(data.value);
+
+  this.storageService.saveData(user.client.name, user.client.email,
+    user.client.password, user.client.telephone, user.client.country, user.client.city,
+    user.client.location, user.client.zip_code, this.items)
+  this.nav.navigateForward('description');
 }
 
 

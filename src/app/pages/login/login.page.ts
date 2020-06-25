@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Plugins } from '@capacitor/core';
-import { NavController, AlertController } from '@ionic/angular';
+import { NavController, AlertController, LoadingController } from '@ionic/angular';
+import { FormGroup } from '@angular/forms';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
 const { Storage } = Plugins;
 const { Network } = Plugins;
 
@@ -11,7 +14,19 @@ const { Network } = Plugins;
 })
 export class LoginPage implements OnInit {
   user: String;
-  constructor(private nav: NavController, public alertController: AlertController) { }
+  loginForm: FormGroup;
+  loading: any;
+
+  data = {
+    email: '',
+    password: ''
+  };
+
+  constructor(private router: Router, 
+    private nav: NavController,
+    public alertController: AlertController, 
+    private authService: AuthenticationService,
+    public loadingController: LoadingController) { }
 
    ngOnInit() {
    this.Storage();
@@ -32,8 +47,6 @@ export class LoginPage implements OnInit {
     }else{
       if(navigation == true){
         this.register()
-      }else{
-        this.login();
       }
     }
   }
@@ -48,6 +61,45 @@ export class LoginPage implements OnInit {
   }
 
 
+// servicios 
+
+async login(){
+  // comprobar si hay conexion
+  this.ionViewDidLoad(false);
+  
+
+  // cargar loading
+  this.presentLoading();
+
+  // comprobar si el usuario es cliente
+  if(this.user == "cliente"){
+    await this.authService.loginClient(this.data.email, this.data.password).subscribe(resp => {
+    console.log(resp);
+    this.loading.dismiss();  
+    this.authService.saveToken(resp['token'], resp['user']);
+    this.nav.navigateForward('panel-client');
+    },
+      (err: any) => {
+        this.loading.dismiss();
+        this.presentAlert("Alerta", "El email o la contraseña son incorrectos")
+      });
+  }
+  // comprobar si el usuario es colaborador
+  else if(this.user == "colaborador"){
+    await this.authService.loginEmployee(this.data.email, this.data.password).subscribe(resp => {
+      console.log(resp);
+      this.loading.dismiss();  
+      this.authService.saveToken(resp['token'], resp['user']);
+      this.nav.navigateForward('panel-employe');
+      },
+        (err: any) => {
+          this.loading.dismiss();
+          this.presentAlert("Alerta", "El email o la contraseña son incorrectos")
+        });
+  }
+}
+
+
   // alerta 
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
@@ -59,11 +111,15 @@ export class LoginPage implements OnInit {
     await alert.present();
   }
 
-
-  // servicios 
-
-  async login(){
-    console.log('CORRECTO');
+  // loading 
+  async presentLoading() {
+     this.loading = await this.loadingController.create({
+      message: 'Espere por favor...',
+    });
+    await this.loading.present();
   }
+
+
+  
 
 }

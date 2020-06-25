@@ -27,6 +27,13 @@
         margin-top: 149px !important;
     }
 
+    @media only screen and (height: 720px){
+        margin-top: 160px !important;
+    }
+
+    @media only screen and (height: 731px){
+        margin-top: 160px !important;
+    }
 
     @media only screen and (height: 736px){
         margin-top: 194px !important;
@@ -36,12 +43,17 @@
         margin-top: 194px !important;
     }
 
+    @media only screen and (height: 823px){
+        margin-top: 194px !important;
+    }
+
+
      @media only screen and (height: 1024px){
         margin-top: 265px !important;
         font-size: 20px;
     }
 
-     @media only screen and (height: 1366px){
+     @media only screen and (max-height: 1366px){
         font-size: 20px;
         margin-top: 410px !important;
     }

@@ -15,7 +15,7 @@
         <p class="text">{{suscription.description}}</p>
       </ion-card-content>
 
-      <ion-button expand="block" size="small" >COMPRAR</ion-button>
+      <ion-button expand="block" (click)="sendData(suscription._id)" size="small" >COMPRAR</ion-button>
     </ion-card>
   </ion-col>
 </ion-row>

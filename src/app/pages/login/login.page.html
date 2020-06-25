@@ -12,20 +12,21 @@
     </ion-label>
 
     <br>
+    
      <ion-item class="input"  trasparent>
        <img icon-small src="assets/img/user.png">
-       <ion-input type="text" placeholder="Correo Electronico"></ion-input>
+       <ion-input [(ngModel)]="data.email" type="text" placeholder="Correo Electronico"></ion-input>
      </ion-item>
 
      <ion-item class="input" trasparent>
       <img icon-small src="assets/img/lock.png">
-      <ion-input type="text" placeholder="Contraseña"></ion-input>
+      <ion-input [(ngModel)]="data.password" type="password" placeholder="Contraseña"></ion-input>
     </ion-item>
 
      <ion-label class="forget-password">Has olvidado tu contraseña</ion-label> 
       <div linespace></div>
 
-      <ion-button (click)="ionViewDidLoad()" class="button" color="primary" expand="block" fill="solid" shape="round">
+      <ion-button (click)="login()" class="button" color="primary" expand="block" fill="solid" shape="round">
         Iniciar
       </ion-button>
       <ion-label class="ion-text-center" (click)="ionViewDidLoad(true)">¿No tienes cuenta?<span class="link-button">Registrate</span></ion-label>

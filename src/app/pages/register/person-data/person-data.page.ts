@@ -13,7 +13,8 @@ const { Storage } = Plugins;
 export class PersonDataPage implements OnInit {
   user: String;
   form: FormGroup;
-  loading: boolean = true;
+  loading: any;
+
   constructor(private nav: NavController, public formBuilder: FormBuilder, 
     private storageService: StorageService, public loadingController: LoadingController) { }
 
@@ -32,6 +33,7 @@ export class PersonDataPage implements OnInit {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
+      telephone: [''],
       password1: ['', Validators.required],
       password2: ['', Validators.required]
     }, { validators: this.validatePassword('password1', 'password2') });
@@ -45,20 +47,26 @@ export class PersonDataPage implements OnInit {
     if (this.user == "cliente") {
       // guardar en el storage
       this.storageService.saveData(this.form.value.name, this.form.value.email,
-        this.form.value.password1, user.client.country, user.client.city,
+        this.form.value.password1, '', user.client.country, user.client.city,
         user.client.location, user.client.zip_code);
 
       //  ejecutar loading
-       this.presentLoading();
-
+      this.presentLoading('Espere...');
 
       // enviar al servicio y guardar en el servidor
       (await this.storageService.saveClient()).subscribe(resp => {
         console.log(resp);
+        this.loading.dismiss();
+
+        // loguear
       })
     }
 
     else if (this.user == "colaborador") {
+    this.storageService.saveData(this.form.value.name, this.form.value.email,
+    this.form.value.password1, this.form.value.telephone, user.client.country, user.client.city,
+    user.client.location, user.client.zip_code);
+
       this.nav.navigateForward('categories');
     }
   }
@@ -80,16 +88,13 @@ export class PersonDataPage implements OnInit {
   }
 
   // loading
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: 'Please wait...',
+  async presentLoading(message: string) {
+    this.loading = await this.loadingController.create({
+      message: message,
       backdropDismiss: false,
-      duration: 2000
     });
-    await loading.present();
+    return this.loading.present();
 
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!');
   }
 
 

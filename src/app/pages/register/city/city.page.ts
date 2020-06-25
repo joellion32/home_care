@@ -33,7 +33,7 @@ export class CityPage implements OnInit {
   const data = await Storage.get({ key: 'client' });
   const user = JSON.parse(data.value);
 
-  this.storageService.saveData('','', '', user.client.country, this.form.value.city, this.form.value.location, this.form.value.zip_code)
+  this.storageService.saveData('','', '', '', user.client.country, this.form.value.city, this.form.value.location, this.form.value.zip_code)
   this.nav.navigateForward('person-data');
   }
 }

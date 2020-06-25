@@ -2,8 +2,10 @@
 
 <ion-content class="container">
     <ion-card class="coworker-card">
-        <img *ngIf="!photo" style="width: 200px !important; height: 200px !important;" src="/assets/img/profile.png" class="header-img animate__animated animate__fadeIn"/>
-        <img *ngIf="photo" [src]="photo" class="header-img animate__animated animate__fadeIn"/>
+       <ion-avatar>
+         <img *ngIf="!photo" src="/assets/img/profile.png" class="header-img animate__animated animate__fadeIn"/>
+         <img *ngIf="photo" [src]="photo" class="header-img animate__animated animate__fadeIn"/>
+       </ion-avatar>
         
         <ion-card-content>
           <ion-list lines="none">

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -10,10 +11,6 @@ const routes: Routes = [
     path: '',
     redirectTo: 'slides',
     pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'slides',
@@ -50,6 +47,14 @@ const routes: Routes = [
   {
     path: 'suscription',
     loadChildren: () => import('./pages/register/suscription/suscription.module').then( m => m.SuscriptionPageModule)
+  },
+  {
+    path: 'panel-client',
+    loadChildren: () => import('./pages/clients/panel/panel.module').then( m => m.PanelPageModule)
+  },
+  {
+    path: 'panel-employe',
+    loadChildren: () => import('./pages/employee/panel-employe/panel-employe.module').then( m => m.PanelEmployePageModule)
   },
 ];
 
