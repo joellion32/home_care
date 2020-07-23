@@ -14,6 +14,51 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+
+    <!--carrousel-->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+  
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+  
+        <div class="item active">
+          <img src="assets/img/banner1.jpg" alt="Los Angeles" style="width:100%;">
+          <div class="carousel-caption">
+            <h3>Los Angeles</h3>
+            <p>LA is always so much fun!</p>
+          </div>
+        </div>
+  
+        <div class="item">
+          <img src="assets/img/banner2.jpg" alt="Chicago" style="width:100%;">
+          <div class="carousel-caption">
+            <h3>Chicago</h3>
+            <p>Thank you, Chicago!</p>
+          </div>
+        </div>
+  
+        <div class="item">
+          <img src="assets/img/banner4.jpg" alt="New York" style="width:100%;">
+          <div class="carousel-caption">
+            <h3>New York</h3>
+            <p>We love the Big Apple!</p>
+          </div>
+        </div>
+  
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        </a>
+      </div>
+    </div>
+    <!--Carrousel-->
 </ion-header>
 
 <ion-menu side="start" menuId="first" contentId="menu">
@@ -21,81 +66,35 @@
 </ion-menu>
 
 <ion-content fullscreen id="menu">
-  <!--carrousel-->
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-
-      <div class="item active">
-        <img src="assets/img/banner1.jpg" alt="Los Angeles" style="width:100%;">
-        <div class="carousel-caption">
-          <h3>Los Angeles</h3>
-          <p>LA is always so much fun!</p>
-        </div>
-      </div>
-
-      <div class="item">
-        <img src="assets/img/banner2.jpg" alt="Chicago" style="width:100%;">
-        <div class="carousel-caption">
-          <h3>Chicago</h3>
-          <p>Thank you, Chicago!</p>
-        </div>
-      </div>
-    
-      <div class="item">
-        <img src="assets/img/banner4.jpg" alt="New York" style="width:100%;">
-        <div class="carousel-caption">
-          <h3>New York</h3>
-          <p>We love the Big Apple!</p>
-        </div>
-      </div>
-  
-       <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-    </a>
-    </div>
-  </div>
-  <!--Carrousel-->
-
-
   <div class="features4-block py-5">
     <div class="container py-lg-3">
       <div class="title-head text-center mb-lg-5 mb-4">
-        <h6 class="sub-title">Elige la categoria segun tus servicios</h6>
+        <h6 class="sub-title">Elige una categoría segun tus necesidades </h6>
         <h3 class="hny-title">
-          Todas <span>las</span> categorias</h3>
+          Todas <span>las</span> Categorías</h3>
       </div>
-    
-        <ion-grid fixed>
-          <ion-row>
-            <ion-col *ngFor="let category of categories" size="6">
-              <ion-card class="ion-activatable ripple-parent">
-                <ion-card-header>
-                  <div class="icon-fea4">
-                    <span class="fa fa-shopping-bag" aria-hidden="true"></span>
-                  </div>
-                  <h5 class="title">{{category.name_category}}</h5>                
-                </ion-card-header>
-                <ion-ripple-effect></ion-ripple-effect>
-                <div class="read-arrow ion-text-right">
-									<span class="fa fa-arrow-right" aria-hidden="true"></span>
-								</div>
-              </ion-card>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
+
+      <ion-grid fixed>
+        <ion-row>
+          <i *ngIf="loading == true" class="fas fa-circle-notch fa-spin"></i>
+          <ion-col *ngFor="let category of categories" size="6">
+            <ion-card class="ion-activatable ripple-parent" (click)="navigate_services(category._id, category.name_category)">
+              <ion-card-header>
+                <div class="icon-fea4">
+                  <span class="fas {{category.icon}}" aria-hidden="true"></span>
+                </div>
+                <h5 class="title">{{category.name_category}}</h5>
+              </ion-card-header>
+              <ion-ripple-effect></ion-ripple-effect>
+              <div class="read-arrow ion-text-right">
+                <span class="fa fa-arrow-right" aria-hidden="true"></span>
+              </div>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </div>
+  </div>
 </ion-content>
 
 
-<app-tabs></app-tabs>

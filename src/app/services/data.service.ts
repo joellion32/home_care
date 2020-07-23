@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Profession } from '../interfaces/profession_interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegisterService {
+export class DataService {
 
   url: string = environment.url;
 
@@ -43,8 +44,7 @@ export class RegisterService {
 
   // obtener las profesiones por categoria
   getProfessions(id: string) {
-    console.log(id);
-    return this.http.get(`${this.url}professions/view/${id}`);
+    return this.http.get<Profession>(`${this.url}professions/view/${id}`);
   }
 
 

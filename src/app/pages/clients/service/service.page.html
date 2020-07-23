@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tipo de servicio</ion-title>
+  </ion-toolbar>
+
+  <app-background category="{{category}}" image="assets/img/banner1.jpg"></app-background>
+</ion-header>
+
+<ion-content>
+  <div class="features4-block py-5">
+    <div class="container py-lg-3">
+      <div class="title-head text-center mb-lg-5 mb-4">
+        <h6 class="sub-title">Elige un servicio segun tus necesidad </h6>
+        <h3 class="hny-title">
+          Todos <span>los</span> Servicios</h3>
+      </div>
+      <br>
+      <ion-row>
+        <ion-list *ngIf="loading == false">
+          <ion-item button lines="none" *ngFor="let profession of professions" detail>
+            <div class="icon-fea4">
+              <span class="fas {{profession.icon}}" aria-hidden="true"></span>
+            </div>
+            <ion-label class="title">{{profession.name_profession}}
+              <p>{{profession.description}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <ion-label *ngIf="professions == 0" class="text">No hay ningun servicio relacionado</ion-label>
+
+        <app-skeleton *ngIf="loading == true"></app-skeleton>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

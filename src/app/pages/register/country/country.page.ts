@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { StorageService } from 'src/app/services/storage.service';
-import { RegisterService } from 'src/app/services/register.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-country',
@@ -12,7 +12,7 @@ export class CountryPage implements OnInit {
   search_text: string = '';
   countries: any[] = [];
   loading: boolean = true;
-  constructor(private nav: NavController, private registerService: RegisterService, private storageService: StorageService) { }
+  constructor(private nav: NavController, private dataService: DataService, private storageService: StorageService) { }
 
   ngOnInit() {
    this.loadData();
@@ -31,7 +31,7 @@ export class CountryPage implements OnInit {
 
   // cargar la data
   async loadData(){
-    this.registerService.getCountry().subscribe(resp => {
+    this.dataService.getCountry().subscribe(resp => {
       this.countries = resp;
       this.loading = false;
       console.log(this.countries);

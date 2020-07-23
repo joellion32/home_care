@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { RegisterService } from 'src/app/services/register.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-categories',
@@ -11,7 +11,7 @@ export class CategoriesPage implements OnInit {
   categories: any[] = [];
   loading: boolean = true;
 
-  constructor(private registerService: RegisterService, private nav: NavController) { }
+  constructor(private dataService: DataService, private nav: NavController) { }
 
   ngOnInit() {
     this.LoadCategories();
@@ -19,7 +19,7 @@ export class CategoriesPage implements OnInit {
 
 
   LoadCategories(){
-    this.registerService.getCategories().subscribe(resp => {
+    this.dataService.getCategories().subscribe(resp => {
       this.categories = resp['categories'];
       this.loading = false;
       console.log(this.categories);

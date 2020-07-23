@@ -4,13 +4,13 @@ import { HeaderComponent } from './header/header.component';
 import { SkeletonComponent } from './skeleton/skeleton.component';
 import { ButtonComponent } from './button/button.component';
 import { MenuComponent } from './menu/menu.component';
-import { TabsComponent } from './tabs/tabs.component';
+import { BackgroundComponent } from './background/background.component';
 
 
 
 
 @NgModule({
-  declarations: [HeaderComponent, SkeletonComponent, ButtonComponent, MenuComponent, TabsComponent],
+  declarations: [HeaderComponent, SkeletonComponent, ButtonComponent, MenuComponent, BackgroundComponent],
   imports: [
     CommonModule,
   ],
@@ -19,7 +19,7 @@ import { TabsComponent } from './tabs/tabs.component';
     SkeletonComponent,
     ButtonComponent,
     MenuComponent, 
-    TabsComponent
+    BackgroundComponent
   ]
 })
 export class ComponentsModule { }

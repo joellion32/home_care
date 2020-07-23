@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RegisterService } from 'src/app/services/register.service';
+import { DataService } from 'src/app/services/data.service';
 import { Plugins } from '@capacitor/core';
 import { StorageService } from 'src/app/services/storage.service';
 import { NavController, LoadingController, AlertController } from '@ionic/angular';
@@ -16,12 +16,12 @@ export class SuscriptionPage implements OnInit {
   loading: any;
   id: string;
 
-  constructor(private registerService: RegisterService, 
+  constructor(private dataService: DataService, 
     private storageService: StorageService, private nav: NavController, 
     private loadingController: LoadingController, private alertController: AlertController) { }
 
   ngOnInit() {
-    this.registerService.getSuscriptions().subscribe(resp => {
+    this.dataService.getSuscriptions().subscribe(resp => {
       this.suscriptions = resp['suscription']
     })
     

@@ -1,6 +1,11 @@
+<!--Tabs-->
 <ion-tabs>
   <ion-tab-bar color="primary" slot="bottom">
-    <ion-tab-button tab="home">
+    <ion-tab-button *ngIf="user == 'cliente'" tab="home" >
+      <ion-icon name="home-outline"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button *ngIf="user == 'colaborador'" tab="panel" >
       <ion-icon name="home-outline"></ion-icon>
     </ion-tab-button>
 
@@ -8,7 +13,7 @@
       <ion-icon name="search-circle-outline"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="user">
+    <ion-tab-button tab="profile">
       <ion-icon name="person-circle-outline"></ion-icon>
     </ion-tab-button>
 

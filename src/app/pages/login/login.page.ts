@@ -3,7 +3,6 @@ import { Plugins } from '@capacitor/core';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { FormGroup } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Router } from '@angular/router';
 const { Storage } = Plugins;
 const { Network } = Plugins;
 
@@ -22,7 +21,7 @@ export class LoginPage implements OnInit {
     password: ''
   };
 
-  constructor(private router: Router, 
+  constructor( 
     private nav: NavController,
     public alertController: AlertController, 
     private authService: AuthenticationService,
@@ -77,7 +76,7 @@ async login(){
     console.log(resp);
     this.loading.dismiss();  
     this.authService.saveToken(resp['token'], resp['user']);
-    this.nav.navigateForward('panel-client');
+    this.nav.navigateForward('tabs/home');
     },
       (err: any) => {
         this.loading.dismiss();
@@ -90,7 +89,7 @@ async login(){
       console.log(resp);
       this.loading.dismiss();  
       this.authService.saveToken(resp['token'], resp['user']);
-      this.nav.navigateForward('panel-employe');
+      this.nav.navigateForward('tabs/panel');
       },
         (err: any) => {
           this.loading.dismiss();
@@ -98,6 +97,8 @@ async login(){
         });
   }
 }
+
+
 
 
   // alerta 

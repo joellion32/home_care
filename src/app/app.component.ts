@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import {Plugins,StatusBarStyle} from '@capacitor/core';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -13,8 +14,10 @@ export class AppComponent {
   constructor(
     private screenOrientation: ScreenOrientation,
     private platform: Platform,
+    private authService: AuthenticationService
   ) {
     this.initializeApp();
+    this.authService.Isauthenticated();
   }
 
   async initializeApp() {

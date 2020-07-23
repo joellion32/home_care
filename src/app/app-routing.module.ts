@@ -56,6 +56,18 @@ const routes: Routes = [
     path: 'panel-employe',
     loadChildren: () => import('./pages/employee/panel-employe/panel-employe.module').then( m => m.PanelEmployePageModule)
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./pages/clients/profile/profile.module').then( m => m.ProfilePageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: 'service/:id',
+    loadChildren: () => import('./pages/clients/service/service.module').then( m => m.ServicePageModule)
+  },
 ];
 
 @NgModule({

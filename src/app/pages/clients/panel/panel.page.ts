@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform, MenuController } from '@ionic/angular';
 import { Category } from 'src/app/interfaces/category_interface';
-import { RegisterService } from 'src/app/services/register.service';
+import { DataService } from 'src/app/services/data.service';
+import { Router } from '@angular/router';
+import { Plugins } from '@capacitor/core';
+const { Storage } = Plugins;
 
 @Component({
   selector: 'app-panel',
@@ -11,16 +14,10 @@ import { RegisterService } from 'src/app/services/register.service';
 export class PanelPage implements OnInit {
   subscribe: any;
   categories: Category[] = [];
-  constructor(public platform: Platform, public menuCtrl: MenuController, public registerService: RegisterService) {
-   // quitar boton de retroceso por hadware
-    this.subscribe = this.platform.backButton.subscribeWithPriority(666666, () => {
-      if(this.constructor.name == "PanelPage"){
-        if(window.confirm("estas seguro de que quieres salir")){
-          navigator["app"].exitApp();
-        }
-      }
-    });
-   }
+  loading: boolean = true;
+
+  constructor(public platform: Platform, public menuCtrl: MenuController, 
+    public dataService: DataService, private router: Router) {}
 
   ngOnInit() {
     this.getCategories();
@@ -32,8 +29,16 @@ export class PanelPage implements OnInit {
   }
 
   getCategories(){
-    this.registerService.getCategories().subscribe(resp => {
+    this.dataService.getCategories().subscribe(resp => {
       this.categories = resp['categories'];
+      this.loading = false;
     });
+  }
+
+  // nevegar hacia los servicios
+  async navigate_services(id, category){
+    // guardar datos en el storage
+     await Storage.set({key: 'category', value: category});
+     this.router.navigateByUrl('service/' + id);
   }
 }

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { Plugins } from '@capacitor/core';
+
+const { Storage } = Plugins;
 
 @Component({
   selector: 'app-menu',
@@ -6,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
+  user: any = '';
+  constructor(private nav: NavController) { }
 
-  constructor() { }
+ async ngOnInit() {
+    this.user = (await Storage.get({ key: 'user' })).value;
+  }
 
-  ngOnInit() {}
+  navigate(route: any){
+    this.removeItem();
+    this.nav.navigateForward(route);
+  }
 
+
+  // delete data
+async removeItem() {
+  const user = (await Storage.get({ key: 'user' })).value;
+
+  if(user == 'cliente'){
+    await Storage.remove({ key: 'token' });
+    await Storage.remove({ key: 'client_data' });
+  }else{
+    console.log('cerrar sesion')
+  }
+}
 }

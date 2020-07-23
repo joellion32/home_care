@@ -10,6 +10,7 @@ const { Storage } = Plugins;
 export class AuthenticationService {
   url: string = environment.url;
   token: string = '';
+  user: string = '';
 
   constructor(private http: HttpClient, private nav: NavController) {
     this.readerToken();
@@ -28,8 +29,8 @@ export class AuthenticationService {
   }
 
 
-   //login colaborador
-   loginEmployee(email: string, password: string) {
+  //login colaborador
+  loginEmployee(email: string, password: string) {
 
     const user = {
       email: email,
@@ -74,9 +75,26 @@ export class AuthenticationService {
 
   // verificar si el usuario esta auntenticado
 
-  Isauthenticated() {
-   return this.token.length > 2;
-  }
-    
+  async Isauthenticated() {
 
+    // token
+    const data = await Storage.get({ key: 'token' });
+    const token = JSON.parse(data.value);
+    
+    // user
+    const data_user = await Storage.get({ key: 'user' });
+    const user = data_user.value;
+    
+    if (token.token.length > 0) {
+      if(user == "cliente"){
+        this.nav.navigateForward('tabs/home');
+      }else{
+        this.nav.navigateForward('tabs/panel');
+      }
+    }
+ 
+  }
 }
+
+
+

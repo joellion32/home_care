@@ -1,0 +1,75 @@
+<ion-header>
+  <div class="login-header ion-padding">
+    <ion-avatar> 
+      <img src="assets/img/profile.png" />
+    </ion-avatar>
+    <h2 style="color: white;">{{user.name}}</h2>
+  </div> 
+
+  <ion-segment color="primary" (ionChange)="segmentChanged($event)" value="profile">
+    <ion-segment-button value="profile">
+      <ion-label style="color: black;">Perfil</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="password">
+      <ion-label style="color: black;">Cambiar contraseña</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+ </ion-header>
+
+<ion-content>
+<div *ngIf="value == 'profile'" class="container">
+  <ion-title>Datos Personales</ion-title>
+
+ 
+  <ion-list>
+    <ion-item class="input" lines="full">
+      <ion-label position="floating">Nombre y Apellido</ion-label>
+      <ion-input [(ngModel)]="user.name" disabled></ion-input>
+    </ion-item>
+
+    <ion-item class="input" lines="full">
+      <ion-label position="floating">Correo Electronico</ion-label>
+      <ion-input [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+
+    <ion-item class="input" lines="full">
+      <ion-label position="floating">País</ion-label>
+      <ion-input [(ngModel)]="user.country" disabled></ion-input>
+    </ion-item>
+
+    <ion-item class="input" lines="full">
+      <ion-label position="floating">Ciudad</ion-label>
+      <ion-input [(ngModel)]="user.city"></ion-input>
+    </ion-item>
+</ion-list>
+
+<ion-button type="submit" class="button" expand="block" shape="round">
+ Actualizar
+</ion-button>
+</div>
+
+
+<div *ngIf="value == 'password'" class="container">
+  <ion-title>Restablecer Contraseña</ion-title>
+  <ion-list>
+      <ion-item class="input" lines="full">
+        <ion-label position="floating">Nueva Contraseña</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+
+      <ion-item class="input" lines="full">
+        <ion-label position="floating">Repite Contraseña</ion-label>
+        <ion-input></ion-input>
+      </ion-item>
+  </ion-list>
+
+  <ion-button class="button" expand="block" shape="round">
+   Actualizar
+  </ion-button>
+</div>
+</ion-content>
+
+
+
+
