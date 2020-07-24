@@ -5,11 +5,11 @@
 <ion-searchbar animated placeholder="Buscar País" class="search" (ionChange)="search($event)"></ion-searchbar>
 
 <ion-list *ngIf="loading == false">
-    <ion-item lines="none" button *ngFor="let c of countries | search: search_text: 'name'" (click)="country(c.name)" detail>
+    <ion-item lines="none" button *ngFor="let c of countries | search: search_text: 'country'" (click)="country(c.country, c._id)" detail>
     <ion-avatar class="ion-margin">
-            <img [src]="c.flag" />
+            <img [src]="c.img" />
     </ion-avatar>
-      <ion-label>{{c.name}}</ion-label>
+      <ion-label>{{c.country}}</ion-label>
     </ion-item>
  </ion-list>
 

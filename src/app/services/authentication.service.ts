@@ -88,8 +88,10 @@ export class AuthenticationService {
     if (token.token.length > 0) {
       if(user == "cliente"){
         this.nav.navigateForward('tabs/home');
-      }else{
+      }else if(user == "colaborador"){
         this.nav.navigateForward('tabs/panel');
+      }else{
+        this.nav.navigateForward('tabs/login');
       }
     }
  

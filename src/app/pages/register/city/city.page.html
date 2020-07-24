@@ -7,9 +7,11 @@
                 <ion-list>
                 <ion-item lines="full">
                     <ion-label position="floating">Ciudad</ion-label>
-                    <ion-input formControlName="city"></ion-input>
+                    <ion-select placeholder="Selecciona la ciudad o provincia" formControlName="city">
+                      <ion-select-option *ngFor="let province of provinces" [value]="province" >{{province}}</ion-select-option>
+                    </ion-select>
                   </ion-item>
-    
+
                   <ion-item lines="full">
                     <ion-label position="floating">Direccion</ion-label>
                     <ion-input formControlName="location"></ion-input>

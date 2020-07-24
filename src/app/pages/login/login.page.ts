@@ -21,19 +21,27 @@ export class LoginPage implements OnInit {
     password: ''
   };
 
-  constructor( 
+  constructor(
     private nav: NavController,
-    public alertController: AlertController, 
+    public alertController: AlertController,
     private authService: AuthenticationService,
     public loadingController: LoadingController) { }
 
-   ngOnInit() {
-   this.Storage();
-   this.ionViewDidLoad(false);
+  ngOnInit() {
+    this.Storage();
+    this.ionViewDidLoad(false);
+  }
+
+  // loading 
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Espere por favor...',
+    });
+    await this.loading.present();
   }
 
   // comprobar estado de la aplicacion si hay conexion o no
-  async ionViewDidLoad(navigation: boolean){
+  async ionViewDidLoad(navigation: boolean) {
     let handler = Network.addListener('networkStatusChange', (status) => {
       console.log("Network status changed", status);
     });
@@ -41,62 +49,60 @@ export class LoginPage implements OnInit {
     let status = await Network.getStatus();
     console.log(status);
 
-    if(status.connected == false){
+    if (status.connected == false) {
       this.presentAlert("ERROR", "No hay conexion a internet");
-    }else{
-      if(navigation == true){
+    } else {
+      if (navigation == true) {
         this.register()
       }
     }
   }
 
   // navigation
-  register(){
+  register() {
     this.nav.navigateForward('country');
   }
 
-  async Storage(){
-    this.user = (await Storage.get({key: 'user'})).value;
+  async Storage() {
+    this.user = (await Storage.get({ key: 'user' })).value;
   }
 
 
-// servicios 
+  // servicios 
 
-async login(){
-  // comprobar si hay conexion
-  this.ionViewDidLoad(false);
-  
+  async login() {
+    // comprobar si hay conexion
+    this.ionViewDidLoad(false);
 
-  // cargar loading
-  this.presentLoading();
 
-  // comprobar si el usuario es cliente
-  if(this.user == "cliente"){
-    await this.authService.loginClient(this.data.email, this.data.password).subscribe(resp => {
-    console.log(resp);
-    this.loading.dismiss();  
-    this.authService.saveToken(resp['token'], resp['user']);
-    this.nav.navigateForward('tabs/home');
-    },
-      (err: any) => {
+    // cargar loading
+    this.presentLoading();
+
+    // comprobar si el usuario es cliente
+    if (this.user == "cliente") {
+      await this.authService.loginClient(this.data.email, this.data.password).subscribe(resp => {
         this.loading.dismiss();
-        this.presentAlert("Alerta", "El email o la contraseña son incorrectos")
-      });
-  }
-  // comprobar si el usuario es colaborador
-  else if(this.user == "colaborador"){
-    await this.authService.loginEmployee(this.data.email, this.data.password).subscribe(resp => {
-      console.log(resp);
-      this.loading.dismiss();  
-      this.authService.saveToken(resp['token'], resp['user']);
-      this.nav.navigateForward('tabs/panel');
+        this.authService.saveToken(resp['token'], resp['user']);
+        this.nav.navigateForward('tabs/home');
       },
         (err: any) => {
           this.loading.dismiss();
           this.presentAlert("Alerta", "El email o la contraseña son incorrectos")
         });
+    }
+    // comprobar si el usuario es colaborador
+    else if (this.user == "colaborador") {
+      await this.authService.loginEmployee(this.data.email, this.data.password).subscribe(resp => {
+        this.loading.dismiss();
+        this.authService.saveToken(resp['token'], resp['user']);
+        this.nav.navigateForward('tabs/panel');
+      },
+        (err: any) => {
+          this.loading.dismiss();
+          this.presentAlert("Alerta", "El email o la contraseña son incorrectos")
+        });
+    }
   }
-}
 
 
 
@@ -112,15 +118,5 @@ async login(){
     await alert.present();
   }
 
-  // loading 
-  async presentLoading() {
-     this.loading = await this.loadingController.create({
-      message: 'Espere por favor...',
-    });
-    await this.loading.present();
-  }
-
-
-  
 
 }

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -21,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/register/country/country.module').then( m => m.CountryPageModule)
   },
   {
-    path: 'city',
+    path: 'city/:id',
     loadChildren: () => import('./pages/register/city/city.module').then( m => m.CityPageModule)
   },
   {
@@ -67,6 +66,10 @@ const routes: Routes = [
   {
     path: 'service/:id',
     loadChildren: () => import('./pages/clients/service/service.module').then( m => m.ServicePageModule)
+  },
+  {
+    path: 'search',
+    loadChildren: () => import('./pages/clients/search/search.module').then( m => m.SearchPageModule)
   },
 ];
 

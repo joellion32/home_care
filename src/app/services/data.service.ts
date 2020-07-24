@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { Profession } from '../interfaces/profession_interface';
 
 @Injectable({
@@ -16,24 +15,19 @@ export class DataService {
 
   // obtener los paises 
   getCountry() {
-    return this.http.get('https://restcountries.eu/rest/v2/lang/es')
-      .pipe(
-        map(
-          (resp: any[]) => {
-            return resp.map(country => {
-              return {
-                code: country.alpha3Code,
-                name: country.name,
-                flag: country.flag
-              }
-            });
-          }
-        )
-
-      ); // cierre del pipe
-
-
+    return this.http.get(`${this.url}get/countries`);
   }
+
+  // obtener paises por id
+  getCountryId(id: string){
+    return this.http.get(`${this.url}view/countries/${id}`)
+  }
+
+  // obtener paises por nombre
+  getCountryName(name: string){
+    return this.http.get(`${this.url}view/country/${name}`)
+  }
+
 
   // obtener categorias
   getCategories() {

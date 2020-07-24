@@ -13,14 +13,14 @@
   <div class="features4-block py-5">
     <div class="container py-lg-3">
       <div class="title-head text-center mb-lg-5 mb-4">
-        <h6 class="sub-title">Elige un servicio segun tus necesidad </h6>
+        <h6 class="sub-title">Elige un servicio segun tu necesidad </h6>
         <h3 class="hny-title">
           Todos <span>los</span> Servicios</h3>
       </div>
       <br>
       <ion-row>
         <ion-list *ngIf="loading == false">
-          <ion-item button lines="none" *ngFor="let profession of professions" detail>
+          <ion-item button lines="none" *ngFor="let profession of professions" detail (click)="navigate(profession._id)" >
             <div class="icon-fea4">
               <span class="fas {{profession.icon}}" aria-hidden="true"></span>
             </div>

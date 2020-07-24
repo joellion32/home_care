@@ -1,0 +1,31 @@
+<app-header title="Buscar Servicio"></app-header>
+
+<ion-content>
+  <div class="container">
+    <ion-title>Filtros de Busqueda</ion-title>
+
+    <ion-list>
+      <ion-item class="input" lines="full">
+        <ion-label position="floating">País</ion-label>
+        <ion-input [(ngModel)]="country" disabled></ion-input>
+      </ion-item>
+
+      <ion-item class="input" lines="full">
+        <ion-label position="floating">Ciudad o Provincia</ion-label>
+        <ion-select placeholder="Selecciona la ciudad o provincia">
+          <ion-select-option *ngFor="let province of provinces">{{province}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <ion-item class="input" lines="full">
+        <ion-label position="floating">Codigo Postal (opcional)</ion-label>
+        <ion-input [(ngModel)]="zip_code"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-button type="submit" class="button" expand="block" shape="round">
+      Buscar
+    </ion-button>
+  </div>
+</ion-content>
