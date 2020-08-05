@@ -1,45 +1,65 @@
-.login-header {
-    background:  #ffce00;
-    height: 200px;
-    color: white;
-    text-align: center;
-    font-family: "Heebo-Bold" !important;
-    font-size: 18px;
+
+
+.contentBgColor {
+    --background: #F0F1F2 !important;
 }
 
-.login-header{
-    position: relative;
-    color: #ffce00;
-    background:  #ffce00;
-    border-radius: 0em;
+.sc-ion-back-button-ios-h{
+    display: inline;
 }
 
-// aplic design
-.login-header::after{
-    content: '';
+
+.profileHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.5;
+    padding-top: 10px;
+
+   .profileImage {
+        width: 80px;
+        height: 80px;
+    }
+
+    .drivermemberType{
+        color:#9B9B9F;
+        font-size: 14px;
+    }
+    
+}
+.detailsItems{
+    // --min-height: 30px;
+    --padding-start:8px;
+}
+
+.rightArrow{
+    width: 16px;
+    right: 0;
     position: absolute;
-    bottom: 0;
-    left: 15%;
-    width: 0;
-    height: 0;
-    border: 20px solid transparent;
-    border-top-color: var(--theme-color);
-    border-bottom: 0;
-    margin-left: -15px;
-    margin-bottom: -15px;
 }
 
-.logo-img {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
+.bgWhite {
+    background: #fff;
 }
 
+.lightTextColor {
+    color: #CDD0D9;
+}
 
-ion-avatar{
-    margin-top: 5px !important;
-    width: 125px !important;
-    height: 125px !important;
+.ion-margin-top, [margin-top] {
+    --margin-top: var(--ion-margin, 16px);
+    margin-top: var(--ion-margin, 16px);
+}
+.ion-padding-start, [padding-start] {
+    --padding-start: var(--ion-padding, 16px);
+    padding-left: var(--ion-padding, 16px);
+}
+
+ion-icon{
+    font-size: 30px !important;
+}
+
+.button-close{
+    width: 350px;
     margin: auto;
 }
-

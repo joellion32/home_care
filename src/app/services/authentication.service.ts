@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { Plugins } from '@capacitor/core';
 import { NavController } from '@ionic/angular';
+import { User } from '../interfaces/user_iterface';
 const { Storage } = Plugins;
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   url: string = environment.url;
   token: string = '';
-  user: string = '';
+  user: User[] = [];
 
   constructor(private http: HttpClient, private nav: NavController) {
     this.readerToken();
@@ -73,6 +75,7 @@ export class AuthenticationService {
   }
 
 
+
   // verificar si el usuario esta auntenticado
 
   async Isauthenticated() {
@@ -87,15 +90,54 @@ export class AuthenticationService {
     
     if (token.token.length > 0) {
       if(user == "cliente"){
-        this.nav.navigateForward('tabs/home');
+        this.nav.navigateRoot('tabs/home');
       }else if(user == "colaborador"){
-        this.nav.navigateForward('tabs/panel');
+        this.nav.navigateRoot('tabs/panel');
       }else{
-        this.nav.navigateForward('tabs/login');
+        this.nav.navigateRoot('tabs/login');
       }
     }
  
   }
+
+
+  // verificar token para proteger las URL
+  async validateToken(): Promise<boolean> {
+    await this.readerToken();
+
+    if (!this.token) {
+      this.nav.navigateRoot('login');
+      return Promise.resolve(false);
+    }
+
+
+    return new Promise(resolve => {
+      const headers = new HttpHeaders({
+        'token': this.token['token']
+      });
+
+      this.http.get(`${this.url}user`, { headers: headers }).subscribe(resp => {
+        if (resp['ok'] == true) {
+          this.user = resp['user']
+          resolve(true)
+        } else {
+          this.nav.navigateRoot('login');
+          resolve(false)
+        }
+      });
+    })
+  }
+
+ // logout
+ async logout(){
+   this.token = null;
+   this.user = null;
+   await Storage.remove({ key: 'token' });
+   await Storage.remove({ key: 'client_data' });
+
+   this.nav.navigateRoot('/login', {animated: true});
+ }
+
 }
 
 

@@ -20,7 +20,7 @@
       <br>
       <ion-row>
         <ion-list *ngIf="loading == false">
-          <ion-item button lines="none" *ngFor="let profession of professions" detail (click)="navigate(profession._id)" >
+          <ion-item button lines="none" *ngFor="let profession of professions" detail (click)="navigate(profession.name_profession)" >
             <div class="icon-fea4">
               <span class="fas {{profession.icon}}" aria-hidden="true"></span>
             </div>

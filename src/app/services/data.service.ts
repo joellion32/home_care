@@ -47,7 +47,6 @@ export class DataService {
     return this.http.get(`${this.url}suscriptions/all`);
   }
 
-
 } // cierre de la clase
 
 

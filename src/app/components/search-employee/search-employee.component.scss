@@ -1,0 +1,152 @@
+.contentBgColor{
+    --background : #F0F4F9 !important;
+    background: #F0F4F9 !important;
+  }
+  
+  ion-header ion-toolbar{
+    text-align: center !important;
+    margin-right: 32px !important;
+  }
+  .textBold{
+    font-weight: bold;
+  }
+  
+  .textColor{
+    color:#000;
+  }
+  .boxShadow{
+    --box-shadow: none !important;
+  }
+  .relative{
+    position: relative;
+  }
+  
+  .fontSmall{
+    font-size: 10px;
+  }
+  .fontmid{
+    font-size: 20px;
+  }
+  
+  .dFlex{
+    display: flex;
+  }
+  
+  .lightTextColor{
+   color: #CDD0D9
+  }
+  
+  .borderBottom{
+    border-bottom: 1px solid #e8e4e4;
+  }
+  
+  .iconFontSize{
+    font-size: 26px;
+  }
+  
+  .paddingVertical{
+    padding: 10px 0px;
+  }
+  .textWhite{
+    color:#fff;
+  }
+  
+  .textMid{
+    font-size: 20px;
+  }
+  
+  
+  .contentBgColor{
+    --background : #F0F1F2 !important;
+  }
+  
+  .bgWhite{
+    background: #fff;
+  }
+  ion-menu-button.button.ion-activatable {
+    color: #000;
+  }
+  
+  .sc-ion-modal-md-h {
+    margin-top: 13%;
+  }
+  
+  .card-Chip{
+    font-size: 11px;
+    --border-radius: 18px;
+    height: 1.8em;
+  }
+  
+  .sc-ion-back-button-ios-h{
+    color:#000;
+  }
+  
+  .cardContents{
+    background: #fff;
+  }
+  
+  /*---Social Share css---*/
+  .whatsappIcon{
+    --color: #25D366;
+  }
+  .fbIcon{
+    --color: #3C5A99;
+  }
+  .skypeIcon{
+    --color: #00aff0;
+  }
+  .twitterIcon{
+    --color: #38A1F3;
+  }
+  .otherIcon{
+    --color: #00aff0;
+  }
+  
+  .footer{
+   background: #fff;
+  }
+  /*---End of Social Share---*/
+
+
+  ion-card-header{
+      background-color: #fff !important;
+  }
+
+  .textBold{
+      font-weight: bold;
+      color: black;
+  }
+
+
+.userIcon{
+    width: 48px !important;
+    height: 48px !important;
+    margin: 2%;
+    margin-left: 9%;
+    // border: 1px solid #b9b1b1;
+    border-radius: 10px;
+  }
+
+  .title{
+      margin-left: 15px !important;
+  }
+
+  .dFlex{
+    margin-left: 15px !important;
+  }
+
+  ion-icon{
+      font-size: 11px;
+      margin-left: 5px !important;
+      margin-bottom: 2px !important;
+  }
+
+  .invite_image{
+    width: 175px;
+    height: 175px;
+    margin: auto !important;
+  }
+
+  .error-template{
+    text-align: center !important;
+  }

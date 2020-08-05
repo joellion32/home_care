@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { Profession } from 'src/app/interfaces/profession_interface';
 import { Plugins } from '@capacitor/core';
+import { AlertController } from '@ionic/angular';
 const { Storage } = Plugins;
 
 @Component({
@@ -16,7 +17,8 @@ export class ServicePage implements OnInit {
   professions: Profession;
   category: string;
 
-  constructor(private activateRoute: ActivatedRoute, private dataService: DataService, private router: Router) { }
+  constructor(private activateRoute: ActivatedRoute, private dataService: DataService, 
+    private router: Router, public alertController: AlertController) { }
 
   async ngOnInit() {
     this.id = this.activateRoute.snapshot.params.id;
@@ -35,16 +37,55 @@ export class ServicePage implements OnInit {
 
 
   // guardar en el storage
-  async saveStorage(data: any){
+  async saveStorage(data: object){
     await Storage.set({
-      key: 'service_id',
-      value: data
+      key: 'search_service',
+      value: JSON.stringify({
+      service: data
+      })
     });
   }
 
   // navegar a la pagina de buscar
-  navigate(data: any){
-    this.saveStorage(data);
-    this.router.navigateByUrl('search');
+  navigate(service: string){
+    this.presentAlertConfirm(service);
   }
+
+
+  // alerta 
+  async presentAlertConfirm(service: string) {
+    const alert = await this.alertController.create({
+      message: '<strong>Seleccione tipo de busqueda</strong>',
+      buttons: [
+        {
+          text: 'Ciudad',
+          cssClass: 'secondary',
+          handler: () => {
+            const data = {
+              service: service,
+              search_method: 'ciudad'
+            }
+
+            this.saveStorage(data);
+            this.router.navigateByUrl('search');
+          }
+        }, {
+          text: 'Codigo Postal',
+          cssClass: 'secondary',
+          handler: () => {
+            const data = {
+              service: service,
+              search_method: 'codigo'
+            }
+
+            this.saveStorage(data);
+            this.router.navigateByUrl('search');
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 }

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, MenuController } from '@ionic/angular';
 import {Plugins,StatusBarStyle} from '@capacitor/core';
 import { ScreenOrientation } from '@ionic-native/screen-orientation/ngx';
 import { AuthenticationService } from './services/authentication.service';
+const { SplashScreen, StatusBar, Storage } = Plugins;
 
 @Component({
   selector: 'app-root',
@@ -11,17 +12,20 @@ import { AuthenticationService } from './services/authentication.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  user: any = '';
+
   constructor(
     private screenOrientation: ScreenOrientation,
     private platform: Platform,
-    private authService: AuthenticationService
+    private auth: AuthenticationService,
+    private menu: MenuController
   ) {
     this.initializeApp();
-    this.authService.Isauthenticated();
-  }
+    //this.authService.Isauthenticated();
+    }
+
 
   async initializeApp() {
-    const { SplashScreen, StatusBar } = Plugins;
     try {
       await SplashScreen.hide();
       await StatusBar.setStyle({ style: StatusBarStyle.Light });

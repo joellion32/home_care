@@ -1,4 +1,15 @@
-<app-header title="Buscar Servicio"></app-header>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div class="login-header ion-padding">
+    <img class="logo-img" src="assets/img/logo.png" class="logo-img">
+    <h2 style="color: white;">Buscar Servicio</h2>
+  </div> 
+</ion-header>
 
 <ion-content>
   <div class="container">
@@ -10,21 +21,38 @@
         <ion-input [(ngModel)]="country" disabled></ion-input>
       </ion-item>
 
-      <ion-item class="input" lines="full">
+      <ion-item *ngIf="search_method == 'ciudad'" class="input" lines="full">
         <ion-label position="floating">Ciudad o Provincia</ion-label>
-        <ion-select placeholder="Selecciona la ciudad o provincia">
+        <ion-select [(ngModel)]="data.province" placeholder="Selecciona la ciudad o provincia">
           <ion-select-option *ngFor="let province of provinces">{{province}}</ion-select-option>
         </ion-select>
       </ion-item>
 
 
-      <ion-item class="input" lines="full">
-        <ion-label position="floating">Codigo Postal (opcional)</ion-label>
-        <ion-input [(ngModel)]="zip_code"></ion-input>
+      <ion-item *ngIf="search_method == 'codigo'" class="input" lines="full">
+        <ion-label position="floating">Codigo Postal</ion-label>
+        <ion-input [(ngModel)]="data.zip_code"></ion-input>
       </ion-item>
+
+
+      <ion-item class="input" lines="full">
+        <ion-label position="floating">Descripción del servicio</ion-label>
+        <ion-input [(ngModel)]="data.description"></ion-input>
+      </ion-item> 
+
+      
+      <ion-item class="input" lines="full">
+        <ion-label position="floating">Localidad</ion-label>
+        <ion-input [(ngModel)]="data.location"></ion-input>
+      </ion-item> 
     </ion-list>
 
-    <ion-button type="submit" class="button" expand="block" shape="round">
+    <ion-button *ngIf="search_method == 'ciudad'" (click)="search_employee_city()" type="submit" class="button" expand="block" shape="round">
+      Buscar
+    </ion-button>
+
+
+    <ion-button *ngIf="search_method == 'codigo'" (click)="search_employee_zip()" type="submit" class="button" expand="block" shape="round">
       Buscar
     </ion-button>
   </div>

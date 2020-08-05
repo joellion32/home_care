@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" name="chatbubble-ellipses"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div class="login-header ion-padding">
+    <ion-avatar>
+      <img src="https://avatars0.githubusercontent.com/u/42456924?s=400&u=a90043406088fa3dc2f0d3f739caba60c9faad2a&v=4" />
+    </ion-avatar>
+    <h5 style="color: white;">{{employee.name}}
+      <p>{{service}}</p>
+    </h5>
+  </div>
+</ion-header>
+
+
+<ion-content>
+  <div class="container">
+  <ion-list>
+    <ion-list-header>
+      Información
+    </ion-list-header>
+      
+    <ion-item>
+      <ion-icon slot="start" style="color: #c6cede;" name="star"></ion-icon>
+      <ion-label>
+        <h2><b>Estrellas:</b> {{employee.stars}}</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon slot="start" style="color: #c6cede;" name="construct"></ion-icon>
+      <ion-label>
+        <h2><b>Habilidades:</b></h2>
+        <ion-text class="ion-text-wrap">
+          <p>{{employee.profession}}</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon slot="start" style="color: #c6cede;" name="person"></ion-icon>
+      <ion-label>
+        <h2><b>Descripción:</b>
+          <ion-text class="ion-text-wrap">
+            <p>{{employee.description}}</p>
+          </ion-text>
+        </h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      Localidad
+    </ion-list-header>
+
+    <ion-item>
+      <ion-icon slot="start" style="color: #c6cede;" name="globe"></ion-icon>
+      <ion-label>
+        <h2><b>Pais:</b> {{employee.country}}</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon slot="start" style="color: #c6cede;" name="business"></ion-icon>
+      <ion-label>
+        <h2><b>Ciudad:</b> {{employee.city}}</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon slot="start" style="color: #c6cede;" name="location"></ion-icon>
+      <ion-label>
+        <h2><b>Direccion:</b> {{employee.location}}</h2>
+      </ion-label>
+    </ion-item>
+
+    <ion-button (click)="save_job()" class="button" expand="block" shape="round">
+      Contratar
+    </ion-button>
+  </ion-list>
+  </div>
+</ion-content>

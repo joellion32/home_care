@@ -1,7 +1,3 @@
-app-menu {
-    height: 100% !important;
-}
-
 
 component-card ion-card .header-img {
     width: 100%;
@@ -18,8 +14,10 @@ ion-buttons {
    width: 100% !important;
 }
 
+
 ion-title{
     font-size: 18px !important;
+    margin: 2px;
 }
 
 ion-grid{
@@ -75,3 +73,13 @@ i{
     color: #293462;
 }
 
+
+.icon-header{
+    color: white !important; 
+    font-size: 20px !important;
+    margin-top: 2px !important;
+}
+
+span{
+    margin-bottom: 5px !important;
+}

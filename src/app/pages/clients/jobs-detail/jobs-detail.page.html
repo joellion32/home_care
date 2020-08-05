@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalles del servicio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content  fullscreeen>
+    <ion-list class="list list-md hydrated">
+      <ion-item class="in-list item item-label hydrated">
+        <ion-thumbnail class="usercard_thumbnail hydrated" slot="start">
+          <ion-img class="image_border hydrated" src="https://avatars0.githubusercontent.com/u/42456924?s=460&u=a90043406088fa3dc2f0d3f739caba60c9faad2a&v=4">
+          </ion-img>
+        </ion-thumbnail>
+        <ion-label class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+          <p class="userdetail_cardp">NOMBRE COLABORADOR</p>
+          <h2>{{employee.name}}</h2>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list class="list list-md hydrated">
+      <ion-item class="in-list item hydrated item-label">
+        <ion-label class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+          <p class="userdetail_cardp">PROFESIONES</p>
+          <h3 class="ion-text-wrap">{{employee.professions}}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    <ion-list class="list list-md hydrated">
+      <ion-item class="car_item in-list item hydrated item-label">
+        <ion-label class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+          <p class="userdetail_cardp">RESEÑAS</p>
+          <h3>{{employee.stars}}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list class="list list-md hydrated">
+      <ion-item class="car_item in-list item hydrated item-label">
+        <ion-label class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+          <p class="userdetail_cardp">SERVICIO</p>
+          <h3>{{job.title}}</h3>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    <ion-list class="list list-md hydrated">
+      <ion-item class="car_item in-list item hydrated item-label">
+        <ion-label text-justify="" text-wrap="" class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+          <p class="userdetail_cardp">DESCRIPCION DEL SERVICIO</p>
+          <h4>{{job.description}}</h4>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+
+    
+    <ion-list class="list list-md hydrated">
+      <ion-item class="car_item in-list item hydrated item-label">
+        <ion-label text-justify="" text-wrap="" class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+          <p class="userdetail_cardp">LOCALIDAD</p>
+          <h4>{{job.location}}</h4>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+    
+    <ion-list class="list list-md hydrated">
+      <ion-item class="car_item in-list item hydrated item-label">
+        <ion-label  class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+          <p class="userdetail_cardp">FECHA Y HORA</p>
+          <h4>{{job.date_of_solicited | date:'medium'}}</h4>
+        </ion-label>
+
+        <ion-label slot="end" class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+          <p class="userdetail_cardp">STATUS</p>
+          <ion-badge color="primary" *ngIf="job.status == 'PENDING'" slot="end" mode="ios">pendiente</ion-badge>
+          <ion-badge color="danger" *ngIf="job.status == 'CANCELLED'" slot="end" mode="ios">cancelado</ion-badge>
+          <ion-badge color="danger" *ngIf="job.status == 'COMPLETED'" slot="end" mode="ios">completado</ion-badge>        </ion-label>
+      </ion-item>
+
+  
+    </ion-list>
+
+    <ion-list class="list list-md hydrated">
+      <ion-row class="hydrated">
+        <ion-col size="12" class="hydrated"
+          style="flex: 0 0 calc(calc(12 / var(--ion-grid-columns, 12)) * 100%); width: calc(calc(12 / var(--ion-grid-columns, 12)) * 100%); max-width: calc(calc(12 / var(--ion-grid-columns, 12)) * 100%);">
+        <ion-button *ngIf="job.status == 'PENDING'" color="light" class="button_black button button-block button-solid ion-activatable hydrated"
+            expand="block" ng-reflect-expand="block">CANCELAR SERVICIO</ion-button>
+
+            <ion-button *ngIf="job.status == 'CANCELLED' || job.status == 'COMPLETED'" color="light" class="button_black button button-block button-solid ion-activatable hydrated"
+            expand="block" ng-reflect-expand="block">DAR RESEÑA</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-list>
+</ion-content>

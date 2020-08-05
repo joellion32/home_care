@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Resultados de Búsqueda</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="!employees == 0" class="contentBgColor hydrated" style="--offset-top:0px; --offset-bottom:0px;">
+  <div class="">
+    <ion-card *ngFor="let employe of employees" class="userCard hydrated ion-activatable ripple-parent" slot="fixed">
+      <ion-card-header class="userCardHeader dFlex ion-color ion-color-light hydrated" color="light"
+        ng-reflect-color="light">
+        <ion-thumbnail class="hydrated">
+          <img class="userIcon"
+            src="https://avatars0.githubusercontent.com/u/42456924?s=460&u=a90043406088fa3dc2f0d3f739caba60c9faad2a&v=4">
+        </ion-thumbnail>
+        <div>
+          <div class="title">
+            <ion-label class="textBold sc-ion-label-md-h sc-ion-label-md-s hydrated">{{employe.name}}</ion-label>
+          </div>
+          <div class="dFlex">
+            <ion-button
+              class="card-Chip textBold boxShadow ion-color ion-color-primary button button-small button-round button-solid ion-activatable hydrated"
+              color="primary" shape="round" size="small">4.8 <ion-icon name="star"></ion-icon></ion-button>
+            <ion-button
+              class="card-Chip textBold boxShadow ion-color ion-color-primary button button-small button-round button-solid ion-activatable hydrated"
+              color="primary" shape="round" size="small">10 <ion-icon name="chatbubble-ellipses"></ion-icon></ion-button>
+          </div>
+        </div>
+      </ion-card-header>
+      <ion-card-content color="light" class="card-content card-content-md hydrated">
+        <div class="borderBottom paddingVertical">
+          <div class="detailText fontSmall" text-uppercase="">LOCALIDAD</div>
+          <ion-label class="detailsLabel textColor textBold sc-ion-label-md-h sc-ion-label-md-s hydrated">
+            {{employe.location}}
+          </ion-label>
+        </div>
+        <div class="borderBottom paddingVertical">
+          <div class="detailText fontSmall" text-uppercase="">DESCRIPCION</div>
+          <ion-label class="detailsLabel textColor textBold sc-ion-label-md-h sc-ion-label-md-s hydrated">
+            {{employe.description}}
+          </ion-label>
+        </div>
+      </ion-card-content>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-card>
+  </div>
+</ion-content>
+
+<div class="container" *ngIf="employees == 0">
+  <div class="row">
+    <div class="col-md-12">
+        <div class="error-template">
+          <ion-img  class="invite_image hydrated" src="assets/img/not-found.png"></ion-img>
+            <h2>No hay registros</h2>
+            <div class="error-details">
+                Por favor verifique la búsqueda e intenté de nuevo
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<ion-footer class="footer footer-md hydrated">
+  <div class="userCardFooter">
+    <ion-button (click)="dismissModal()" 
+      class="textBold boxShadow ion-color ion-color-primary button button-block button-solid ion-activatable hydrated"
+      color="primary" expand="block">CANCELAR</ion-button>
+  </div>
+</ion-footer>
+
+
+

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSegment } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
 import { User } from 'src/app/interfaces/user_iterface';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 const { Storage } = Plugins;
 
 @Component({
@@ -10,27 +11,15 @@ const { Storage } = Plugins;
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
-@ViewChild(IonSegment) segment: IonSegment;
 
-value: any = 'profile';
 
-user: any = {
-name: '',
-email: '',
-country: '',
-city: ''
-};
+user: any = {}
 
-  constructor() { }
 
-  ngOnInit() {
+  constructor(private auth: AuthenticationService) { }
+
+  async ngOnInit() {
    this.LoadUser();
-  }
-
-
- // cambiar segment
-  segmentChanged(event){
-    this.value = event.detail.value;
   }
 
 
@@ -40,4 +29,9 @@ city: ''
     const user = JSON.parse(ret.value);
     this.user = user.user;
   }
+
+  logout(){
+    this.auth.logout();
+  }
+
 }

@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Plugins } from '@capacitor/core';
-import { NavController, AlertController, LoadingController } from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
 import { FormGroup } from '@angular/forms';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { ViewLoadService } from 'src/app/services/components/view-load.service';
+import { LoadingService } from 'src/app/services/components/loading.service';
 const { Storage } = Plugins;
-const { Network } = Plugins;
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,8 @@ export class LoginPage implements OnInit {
   user: String;
   loginForm: FormGroup;
   loading: any;
+  dismiss: any;
+  subscribe: any;
 
   data = {
     email: '',
@@ -25,86 +28,57 @@ export class LoginPage implements OnInit {
     private nav: NavController,
     public alertController: AlertController,
     private authService: AuthenticationService,
-    public loadingController: LoadingController) { }
+    private loadingService: LoadingService,
+    private viewLoad: ViewLoadService) { }
 
   ngOnInit() {
     this.Storage();
-    this.ionViewDidLoad(false);
+    this.viewLoad.ionViewDidLoad(false);
   }
 
-  // loading 
-  async presentLoading() {
-    this.loading = await this.loadingController.create({
-      message: 'Espere por favor...',
-    });
-    await this.loading.present();
-  }
-
-  // comprobar estado de la aplicacion si hay conexion o no
-  async ionViewDidLoad(navigation: boolean) {
-    let handler = Network.addListener('networkStatusChange', (status) => {
-      console.log("Network status changed", status);
-    });
-
-    let status = await Network.getStatus();
-    console.log(status);
-
-    if (status.connected == false) {
-      this.presentAlert("ERROR", "No hay conexion a internet");
-    } else {
-      if (navigation == true) {
-        this.register()
-      }
-    }
-  }
-
-  // navigation
-  register() {
-    this.nav.navigateForward('country');
-  }
 
   async Storage() {
     this.user = (await Storage.get({ key: 'user' })).value;
   }
 
 
-  // servicios 
-
   async login() {
     // comprobar si hay conexion
-    this.ionViewDidLoad(false);
-
-
-    // cargar loading
-    this.presentLoading();
+    this.viewLoad.ionViewDidLoad(false);
 
     // comprobar si el usuario es cliente
     if (this.user == "cliente") {
+      this.loadingService.presentLoading();
       await this.authService.loginClient(this.data.email, this.data.password).subscribe(resp => {
-        this.loading.dismiss();
         this.authService.saveToken(resp['token'], resp['user']);
         this.nav.navigateForward('tabs/home');
+        this.loadingService.closeLoading();
       },
         (err: any) => {
-          this.loading.dismiss();
+          this.loadingService.closeLoading();
           this.presentAlert("Alerta", "El email o la contraseña son incorrectos")
         });
     }
     // comprobar si el usuario es colaborador
     else if (this.user == "colaborador") {
+      this.loadingService.presentLoading();
       await this.authService.loginEmployee(this.data.email, this.data.password).subscribe(resp => {
-        this.loading.dismiss();
         this.authService.saveToken(resp['token'], resp['user']);
         this.nav.navigateForward('tabs/panel');
+        this.loadingService.closeLoading();
       },
         (err: any) => {
-          this.loading.dismiss();
+          this.loadingService.closeLoading();
           this.presentAlert("Alerta", "El email o la contraseña son incorrectos")
         });
     }
   }
 
 
+  // navegar a la pagina de registro
+  navigate() {
+    this.viewLoad.ionViewDidLoad(true, 'country');
+  }
 
 
   // alerta 
@@ -112,11 +86,10 @@ export class LoginPage implements OnInit {
     const alert = await this.alertController.create({
       header: header,
       message: message,
-      buttons: ['OK']
+      buttons: ['OK'],
     });
 
     await alert.present();
   }
-
 
 }

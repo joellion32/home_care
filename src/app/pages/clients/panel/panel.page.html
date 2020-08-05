@@ -1,18 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-
-    <ion-buttons slot="start">
-      <ion-button (click)="showMenu()">
-        <ion-icon slot="start" name="menu"></ion-icon>
-      </ion-button>
-
-      <ion-title class="ion-text-center">HomeCare Services</ion-title>
-
-
-      <ion-button (click)="showSearch()">
-        <ion-icon slot="end" name="search-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+      <ion-title slot="start"><ion-icon style="font-size: 20px !important;" name="home"></ion-icon> <span> HomeCare Services</span></ion-title>
   </ion-toolbar>
 
     <!--carrousel-->
@@ -60,10 +48,6 @@
     </div>
     <!--Carrousel-->
 </ion-header>
-
-<ion-menu side="start" menuId="first" contentId="menu">
-  <app-menu></app-menu>
-</ion-menu>
 
 <ion-content fullscreen id="menu">
   <div class="features4-block py-5">

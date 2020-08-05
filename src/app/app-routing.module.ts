@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -61,6 +62,7 @@ const routes: Routes = [
   },
   {
     path: 'tabs',
+    canLoad: [AuthGuard],
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
   {
@@ -69,8 +71,20 @@ const routes: Routes = [
   },
   {
     path: 'search',
-    loadChildren: () => import('./pages/clients/search/search.module').then( m => m.SearchPageModule)
+    loadChildren: () => import('./pages/clients/search/search.module').then( m => m.SearchPageModule),
   },
+  {
+    path: 'jobs',
+    loadChildren: () => import('./pages/clients/jobs/jobs.module').then( m => m.JobsPageModule)
+  },
+  {
+    path: 'jobs-detail/:id',
+    loadChildren: () => import('./pages/clients/jobs-detail/jobs-detail.module').then( m => m.JobsDetailPageModule)
+  },
+  {
+    path: 'profile-employee/:id',
+    loadChildren: () => import('./pages/employee/profile-employee/profile-employee.module').then( m => m.ProfileEmployeePageModule)
+  }
 ];
 
 @NgModule({

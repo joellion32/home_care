@@ -2,23 +2,27 @@
 <ion-tabs>
   <ion-tab-bar color="primary" slot="bottom">
     <ion-tab-button *ngIf="user == 'cliente'" tab="home" >
-      <ion-icon name="home-outline"></ion-icon>
+      <ion-icon name="home"></ion-icon>
     </ion-tab-button>
 
     <ion-tab-button *ngIf="user == 'colaborador'" tab="panel" >
-      <ion-icon name="home-outline"></ion-icon>
+      <ion-icon name="home"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="search">
-      <ion-icon name="search-circle-outline"></ion-icon>
+    <ion-tab-button tab="jobs">
+      <ion-icon name="time"></ion-icon>  
     </ion-tab-button>
 
     <ion-tab-button tab="profile">
-      <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-icon name="person"></ion-icon>
     </ion-tab-button>
 
-    <ion-tab-button tab="chat">
-      <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+    <ion-tab-button tab="notifications">
+      <ion-icon name="notifications"></ion-icon>
+    </ion-tab-button>
+
+    <ion-tab-button tab="configuration">
+      <ion-icon name="cog"></ion-icon>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>

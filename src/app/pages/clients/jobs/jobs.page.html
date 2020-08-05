@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Historial</ion-title>
+  </ion-toolbar>
+
+  <ion-segment color="light" value="PENDING" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="PENDING">
+      <ion-icon name="alarm"></ion-icon>
+      <ion-label>Pendientes</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="COMPLETED">
+      <ion-icon name="checkmark-sharp"></ion-icon>
+      <ion-label>Completados</ion-label>
+    </ion-segment-button>
+
+    <ion-segment-button value="CANCELLED">
+      <ion-icon name="close-sharp"></ion-icon>
+      <ion-label>Cancelados</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content fullscreen>
+
+  <ion-row padding-vertical="" class="hydrated">
+    <ion-col size="12" ng-reflect-size="6" class="hydrated"
+      style="flex: 0 0 calc(calc(6 / var(--ion-grid-columns, 12)) * 100%); width: calc(calc(6 / var(--ion-grid-columns, 12)) * 100%); max-width: calc(calc(6 / var(--ion-grid-columns, 12)) * 100%);">
+      <ion-card class="car_card sc-ion-card-md-h sc-ion-card-md-s hydrated">
+        <ion-item class="car_item item hydrated item-label">
+          <ion-thumbnail class="card_jobEarn hydrated" slot="start">
+            <ion-img src="assets/img/home-run.png" class="hydrated home"></ion-img>
+          </ion-thumbnail>
+          <ion-label class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+            <p>Trabajos totales</p>
+            <h2>10</h2>
+          </ion-label>
+        </ion-item>
+      </ion-card>
+    </ion-col>
+
+    <ion-card *ngFor="let job of jobs" class="ion-activatable ripple-parent card_panel" (click)="navigate(job._id)">
+      <ion-list class="list list-md hydrated">
+        <ion-item class="in-list item item-label hydrated">
+          <ion-thumbnail class="usercard_thumbnail hydrated" slot="start">
+            <ion-img src="https://avatars0.githubusercontent.com/u/42456924?s=460&u=a90043406088fa3dc2f0d3f739caba60c9faad2a&v=4"></ion-img>
+          </ion-thumbnail>
+          <ion-label class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+            <p class="userdetail_cardp">CONTRATO</p>
+            <h2 class="ion-text-wrap">{{job.employe_id.name}}</h2>
+          </ion-label>
+            <ion-badge color="primary" *ngIf="job.status == 'PENDING'" slot="end" mode="ios">pendiente</ion-badge>
+            <ion-badge color="danger" *ngIf="job.status == 'CANCELLED'" slot="end" mode="ios">cancelado</ion-badge>
+            <ion-badge color="danger" *ngIf="job.status == 'COMPLETED'" slot="end" mode="ios">completado</ion-badge>
+        </ion-item>
+      </ion-list>
+      <ion-list class="list list-md hydrated">
+        <ion-item class="in-list item hydrated item-label">
+          <ion-label class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+            <p class="userdetail_cardp">TIPO DE SERVICIO</p>
+            <h3>{{job.title}}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list class="list list-md hydrated">
+        <ion-item class="car_item in-list item hydrated item-label">
+          <ion-label class="sc-ion-label-md-h sc-ion-label-md-s hydrated">
+            <p class="userdetail_cardp">FECHA Y HORA</p>
+            <h3>{{job.date_of_solicited | date:'medium'}}</h3>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-ripple-effect></ion-ripple-effect>
+    </ion-card>
+  </ion-row>
+
+
+</ion-content>

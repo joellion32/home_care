@@ -1,75 +1,44 @@
 <ion-header>
-  <div class="login-header ion-padding">
-    <ion-avatar> 
-      <img src="assets/img/profile.png" />
+  <ion-toolbar color="primary">
+    <ion-title>Perfil</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="onClick()">
+        EDITAR
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="contentBgColor hydrated" style="--offset-top:0px; --offset-bottom:0px;">
+  <div class="profileHeader bgWhite">
+    <ion-avatar class="profileImage hydrated"><img
+        src="https://avatars0.githubusercontent.com/u/42456924?s=460&u=a90043406088fa3dc2f0d3f739caba60c9faad2a&v=4">
     </ion-avatar>
-    <h2 style="color: white;">{{user.name}}</h2>
-  </div> 
-
-  <ion-segment color="primary" (ionChange)="segmentChanged($event)" value="profile">
-    <ion-segment-button value="profile">
-      <ion-label style="color: black;">Perfil</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="password">
-      <ion-label style="color: black;">Cambiar contraseña</ion-label>
-    </ion-segment-button>
-  </ion-segment>
-
- </ion-header>
-
-<ion-content>
-<div *ngIf="value == 'profile'" class="container">
-  <ion-title>Datos Personales</ion-title>
-
- 
-  <ion-list>
-    <ion-item class="input" lines="full">
-      <ion-label position="floating">Nombre y Apellido</ion-label>
-      <ion-input [(ngModel)]="user.name" disabled></ion-input>
+    <h5 class="textBold">{{user.name}}</h5><span class="drivermemberType">Miembro</span>
+  </div>
+  <br>
+  <ion-label class="lightTextColor sc-ion-label-md-h sc-ion-label-md-s hydrated"> INFORMACION</ion-label>
+  <ion-list class="list list-md hydrated">
+    <ion-item class="detailsItems item-lines-full in-list item hydrated" lines="full" ng-reflect-lines="full">
+      <h6 slot="start">Nombre de usuario</h6><span class="lightTextColor" slot="end">{{user.name}}</span>
+    </ion-item>
+    <ion-item class="detailsItems item-lines-full in-list item hydrated" lines="full" ng-reflect-lines="full">
+      <h6 slot="start">Email</h6><span class="lightTextColor" slot="end">{{user.email}}</span>
+    </ion-item>
+    <ion-item class="detailsItems item-lines-full in-list item hydrated" lines="full" ng-reflect-lines="full">
+      <h6 slot="start">País</h6><span class="lightTextColor" slot="end">{{user.country}}</span>
+    </ion-item>
+    <ion-item class="detailsItems item-lines-full in-list item hydrated" lines="full" ng-reflect-lines="full">
+      <h6 slot="start">Ciudad</h6><span class="lightTextColor" slot="end">{{user.city}}</span>
+    </ion-item>
+    <ion-item class="detailsItems item-lines-none in-list item hydrated" lines="none" ng-reflect-lines="none">
+      <h6 slot="start">Fecha de registro</h6><span class="lightTextColor" slot="end">{{user.date_of_register | date}}</span>
     </ion-item>
 
-    <ion-item class="input" lines="full">
-      <ion-label position="floating">Correo Electronico</ion-label>
-      <ion-input [(ngModel)]="user.email"></ion-input>
-    </ion-item>
-
-    <ion-item class="input" lines="full">
-      <ion-label position="floating">País</ion-label>
-      <ion-input [(ngModel)]="user.country" disabled></ion-input>
-    </ion-item>
-
-    <ion-item class="input" lines="full">
-      <ion-label position="floating">Ciudad</ion-label>
-      <ion-input [(ngModel)]="user.city"></ion-input>
-    </ion-item>
-</ion-list>
-
-<ion-button type="submit" class="button" expand="block" shape="round">
- Actualizar
-</ion-button>
-</div>
-
-
-<div *ngIf="value == 'password'" class="container">
-  <ion-title>Restablecer Contraseña</ion-title>
-  <ion-list>
-      <ion-item class="input" lines="full">
-        <ion-label position="floating">Nueva Contraseña</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
-
-      <ion-item class="input" lines="full">
-        <ion-label position="floating">Repite Contraseña</ion-label>
-        <ion-input></ion-input>
-      </ion-item>
+    <ion-button class="button-close" (click)="logout()" expand="block">
+      Cerrar Sesión 
+    </ion-button>
   </ion-list>
-
-  <ion-button class="button" expand="block" shape="round">
-   Actualizar
-  </ion-button>
-</div>
 </ion-content>
-
-
-
-

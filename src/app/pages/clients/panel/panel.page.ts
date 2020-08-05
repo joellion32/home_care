@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform, MenuController } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
 import { Category } from 'src/app/interfaces/category_interface';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
@@ -16,7 +16,7 @@ export class PanelPage implements OnInit {
   categories: Category[] = [];
   loading: boolean = true;
 
-  constructor(public platform: Platform, public menuCtrl: MenuController, 
+  constructor(public menuCtrl: MenuController,
     public dataService: DataService, private router: Router) {}
 
   ngOnInit() {
@@ -24,11 +24,11 @@ export class PanelPage implements OnInit {
   }
 
   // mostrar menu
-  showMenu(){
+  showMenu() {
     this.menuCtrl.toggle();
   }
 
-  getCategories(){
+  getCategories() {
     this.dataService.getCategories().subscribe(resp => {
       this.categories = resp['categories'];
       this.loading = false;
@@ -36,9 +36,12 @@ export class PanelPage implements OnInit {
   }
 
   // nevegar hacia los servicios
-  async navigate_services(id, category){
+  async navigate_services(id, category) {
     // guardar datos en el storage
-     await Storage.set({key: 'category', value: category});
-     this.router.navigateByUrl('service/' + id);
+    await Storage.set({ key: 'category', value: category });
+    this.router.navigateByUrl('service/' + id);
   }
+
+
+  
 }

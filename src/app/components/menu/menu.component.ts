@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { Plugins } from '@capacitor/core';
-
+import { AuthenticationService } from 'src/app/services/authentication.service';
 const { Storage } = Plugins;
 
 @Component({
@@ -11,15 +10,15 @@ const { Storage } = Plugins;
 })
 export class MenuComponent implements OnInit {
   user: any = '';
-  constructor(private nav: NavController) { }
+  constructor(private auth: AuthenticationService) { }
 
  async ngOnInit() {
     this.user = (await Storage.get({ key: 'user' })).value;
   }
 
-  navigate(route: any){
-    this.removeItem();
-    this.nav.navigateForward(route);
+
+  logout(){
+    this.auth.logout();
   }
 
 
